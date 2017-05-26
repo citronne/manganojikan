@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+#menu h1{
+	background-color: blue;
+	position: sticky;
+	display: table-cell;
+	width: 100%;	
+}
+
+#menu2 {
+	display: table-cell;
+	width:25%;
+}
+
+#mangas {
+	display: table-cell;
+	border-style: solid;
+	border-color: black;
+	width: 74%;
+}
+
