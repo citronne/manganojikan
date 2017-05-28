@@ -1,7 +1,11 @@
 @CHARSET "UTF-8";
+
+nav {
+	position: sticky;
+}
+
 #menu {
 	background-color: blue;
-	position: sticky;
 	display: -webkit-flex;
 	display: flex;
 	flex-direction: row;
