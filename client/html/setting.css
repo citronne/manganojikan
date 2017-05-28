@@ -1,0 +1,36 @@
+#menu {
+    background-color: blue;
+    position: sticky;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+
+#menu li{
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+#container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+
+#menu2 {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+@media screen and (max-width: 640px) {
+    #menu2 {
+        display: none;
+    }
+}
+
+#setting {
+    border-style: solid;
+    border-color: black;
+    -webkit-flex: 3;
+    flex: 3;
+}

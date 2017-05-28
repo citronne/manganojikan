@@ -1,20 +1,38 @@
 @CHARSET "UTF-8";
-#menu h1{
+#menu {
 	background-color: blue;
 	position: sticky;
-	display: table-cell;
-	width: 100%;	
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+}
+
+#menu li{
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+#container {
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
 }
 
 #menu2 {
-	display: table-cell;
-	width:25%;
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+@media screen and (max-width: 640px) {
+	#menu2 {
+		display: none;
+	}
 }
 
 #mangas {
-	display: table-cell;
 	border-style: solid;
 	border-color: black;
-	width: 74%;
+	-webkit-flex: 3;
+	flex: 3;
 }
 
