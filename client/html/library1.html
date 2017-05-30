@@ -5,18 +5,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>library1</title>
 	<link rel="stylesheet" type="text/css" href="../css/font-awesome.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../lib/css/normalize-7.0.0.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="library.css" media="screen"/>
+</head>
+
 <body>
 	<nav>
-		<ul id="menu">
-			<li id="library1">library</li>
-			<li>search</li>
-			<li id="setting"><i class="fa fa-bath" aria-hidden="true"></i>setting</li>
+		<ul class="menu">
+			<li class="home-btn"><i class="fa fa-home" aria-hidden="true"></i><span class="menu-text">library</span></li>
+			<li class="search-box">
+                <input type="search" placeholder="Search..." />
+                <span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+            </li>
+			<li><i class="fa fa-cog" aria-hidden="true"></i><span class="menu-text">setting</span></li>
 		</ul>
 	</nav>
 
 	<div id="container">
-		<div id="menu2">
+		<div class="side-menu">
 			<ul>
 				<li>filtrer</li>
 				<li>transformer</li>
@@ -25,7 +31,7 @@
 			</ul>
 		</div>
 
-		<div id="mangas">
+		<div class="mangas">
 		</div>
 	</div>
 </body>

@@ -1,9 +1,17 @@
+nav {
+    position: sticky;
+    top: 15px;
+}
+
 #menu {
     background-color: blue;
-    position: sticky;
     display: -webkit-flex;
     display: flex;
     flex-direction: row;
+}
+
+ul {
+    list-style: none;
 }
 
 #menu li{

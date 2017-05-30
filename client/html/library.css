@@ -2,16 +2,40 @@
 
 nav {
 	position: sticky;
+	top: 0px;
+    padding: 0.4rem;
+    background-color: blue;
+    font-size: 1.3rem;
+
 }
 
-#menu {
-	background-color: blue;
+nav ul {
+
+    margin: 0px;
+    padding-left: 0px;
+
+}
+
+nav input {
+    padding-right: 0.9rem;
+}
+
+nav .fa-search {
+    position: relative;
+    left: -1.4rem;
+}
+
+.menu {
 	display: -webkit-flex;
 	display: flex;
 	flex-direction: row;
 }
 
-#menu li{
+ul {
+	list-style: none;
+}
+
+nav .home-btn{
 	-webkit-flex: 1;
 	flex: 1;
 }
@@ -22,20 +46,25 @@ nav {
 	flex-direction: row;
 }
 
-#menu2 {
+.side-menu {
 	-webkit-flex: 1;
 	flex: 1;
 }
 
 @media screen and (max-width: 640px) {
-	#menu2 {
+	.side-menu {
 		display: none;
 	}
+
+    .menu-text {
+        display: none;
+    }
 }
 
-#mangas {
+.mangas {
 	border-style: solid;
 	border-color: black;
+	height: 1000px;
 	-webkit-flex: 3;
 	flex: 3;
 }
