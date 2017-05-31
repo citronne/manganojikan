@@ -1,0 +1,82 @@
+nav {
+    position: sticky;
+    top: 0px;
+    padding: 0.4rem;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b4e391+0,61c419+50,b4e391+100;Green+3D */
+    background: #b4e391; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #b4e391 0%, #61c419 50%, #b4e391 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #b4e391 0%,#61c419 50%,#b4e391 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #b4e391 0%,#61c419 50%,#b4e391 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    font-size: 1.3rem;
+
+}
+
+nav .menu {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav .container-2 {
+    width: 15rem;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+nav .container-2 i {
+    color: darkslategray;
+}
+
+nav .container-2 #search {
+    width: 14rem;
+    height: 1.4rem;
+    border: none;
+    float: left;
+    padding-left: 35px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-transition: width .55s ease;
+    -moz-transition: width .55s ease;
+    -ms-transition: width .55s ease;
+    -o-transition: width .55s ease;
+    transition: width .55s ease;
+}
+
+nav ul {
+
+    margin: 0px;
+    padding-left: 0px;
+
+}
+
+nav input {
+    padding-right: 0.9rem;
+}
+
+nav .fa-search {
+    position: relative;
+    left: -2.4rem;
+}
+
+nav i {
+    color: white;
+}
+
+nav .home-btn{
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+@media screen and (max-width: 640px) {
+    .menu-text {
+        display: none;
+    }
+}
