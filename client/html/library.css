@@ -1,4 +1,7 @@
 @CHARSET "UTF-8";
+nav .fa-home {
+    color: navy;
+}
 
 ul {
 	list-style: none;

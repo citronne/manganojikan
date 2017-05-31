@@ -1,13 +1,5 @@
-nav {
-    position: sticky;
-    top: 15px;
-}
-
-#menu {
-    background-color: blue;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: row;
+nav .fa-cog {
+    color: navy;
 }
 
 ul {
