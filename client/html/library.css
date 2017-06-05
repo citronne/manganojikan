@@ -18,17 +18,68 @@ ul {
 	flex: 1;
 }
 
-@media screen and (max-width: 640px) {
-	.side-menu {
-		display: none;
-	}
+.liste-mangas {
+    display: grid;
+    padding: 0px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 20vh;
+}
+
+@media screen and (max-width: 768px) {
+
+    .side-menu {
+        display: none;
+    }
+
+    .liste-mangas {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-auto-rows: 20vh;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .liste-mangas {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-auto-rows: 20vh;
+    }
 }
 
 .mangas {
-	border-style: solid;
-	border-color: black;
 	height: 1000px;
-	-webkit-flex: 3;
-	flex: 3;
+    -webkit-flex: 4;
+    flex: 4;
+}
+
+
+
+.liste-mangas a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.liste-mangas .manga-img {
+    flex: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.liste-mangas .manga-text {
+    text-align: center;
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    height: 2.4rem; /* Fallback for non-webkit */
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.liste-mangas li {
+    display: inline-block;
 }
 

@@ -35,10 +35,8 @@ nav .menu-search i {
 }
 
 nav ul {
-
     margin: 0px;
     padding-left: 0px;
-
 }
 
 nav i {
@@ -51,6 +49,7 @@ nav .home-btn{
 }
 
 .search-box {
+    display: -webkit-flex;
     display: flex;
     background: white;
     padding: 1px 6px;
