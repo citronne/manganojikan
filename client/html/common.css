@@ -77,8 +77,19 @@ nav .fa-cog {
     padding-right: 3px;
 }
 
-@media screen and (max-width: 640px) {
-    .menu-text {
-        display: none;
-    }
+.container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
 }
+
+.side-menu {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.side-menu ul{
+    list-style: none;
+    padding: 0rem 1rem;
+}
+

@@ -3,21 +3,6 @@ nav .fa-home {
     color: navy;
 }
 
-ul {
-	list-style: none;
-}
-
-#container {
-	display: -webkit-flex;
-	display: flex;
-	flex-direction: row;
-}
-
-.side-menu {
-	-webkit-flex: 1;
-	flex: 1;
-}
-
 .liste-mangas {
     display: grid;
     padding: 0px;
@@ -49,8 +34,6 @@ ul {
     -webkit-flex: 4;
     flex: 4;
 }
-
-
 
 .liste-mangas a {
     display: flex;
