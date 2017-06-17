@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>library1</title>
+    <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/vendor/normalize/normalize-7.0.0.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/styles/library.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/styles/common.css" media="screen"/>
+</head>
+<body>
+<nav>
+    <div class="menu">
+        <div class="home-btn"><a href="{{ path_for('homepage')}}"><i class="fa fa-home" aria-hidden="true" style="font-size: 1.8rem"></i></a></div>
+        <div class="menu-search">
+                <span class="search-box">
+                    <input type="search" id="search" placeholder="Search..." />
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </span>
+        </div>
+        <div><a href="setting.html"><i class="fa fa-cog" aria-hidden="true" style="font-size: 1.8rem"></i></a></div>
+    </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+{#<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{{ path_for('homepage') }}" class="navbar-brand">Slim3</a>
+        </div>
+        <div class="nav navbar-nav">
+            <li><a href="{{ path_for('contact') }}">contact</a></li>
+        </div>
+    </div>
+</nav>
+    {% block content %}{% endblock %}
+#}
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <h1>Me contacter</h1>
+    <p>
+        k;h;ja;s :k lklkdlfafafdnakreiianfn fnajafa fjkajf fnnvbea iouew
+    </p>
+
+    <form action="{{ path_for('contact') }}" method="post">
+        <div class="form-groupe">
+            <label for="name">Votre nom</label>
+            <input type="text" class="form-control" name="name" id="name"/>
+        </div>
+        <div class="form-groupe">
+            <label for="email">Votre email</label>
+            <input type="text" class="form-control" name="email" id="email"/>
+        </div>
+        <div class="form-groupe">
+            <label for="content">Content</label>
+            <textarea type="text" class="form-control" name="content" id="content"></textarea>
+        </div>
+        <div class="form-groupe">
+            <input type="submit" class="btn btn-primary" value="Envoyer"/>
+        </div>
+    </form>
+{% endblock %}

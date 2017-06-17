@@ -1,0 +1,95 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+nav {
+    position: sticky;
+    top: 0px;
+    padding: 0.4rem;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b4e391+0,61c419+50,b4e391+100;Green+3D */
+    background: #b4e391; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #b4e391 0%, #61c419 50%, #b4e391 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #b4e391 0%,#61c419 50%,#b4e391 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #b4e391 0%,#61c419 50%,#b4e391 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    font-size: 1.3rem;
+}
+
+nav .menu {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav .menu-search {
+    width: 15rem;
+    overflow: hidden;
+}
+
+nav .menu-search i {
+    color: darkslategray;
+}
+
+nav ul {
+    margin: 0px;
+    padding-left: 0px;
+}
+
+nav i {
+    color: white;
+}
+
+nav .home-btn{
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.search-box {
+    display: -webkit-flex;
+    display: flex;
+    background: white;
+    padding: 1px 6px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.search-box input {
+    overflow: hidden;
+    -webkit-flex: 1;
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+
+}
+
+.search-box i {
+    margin-top: 1px;
+}
+
+nav .fa-cog {
+    padding-left: 9px;
+    padding-right: 3px;
+}
+
+.container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+
+.side-menu {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.side-menu ul{
+    list-style: none;
+    padding: 0rem 1rem;
+}
+

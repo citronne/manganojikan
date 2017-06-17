@@ -1,0 +1,33 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    {#{{ dump(mangas) }}#}
+
+
+
+    <div class="container">
+        <div class="side-menu">
+            <ul>
+                <li>filtrer</li>
+                <li>transformer</li>
+                <li>supprimer</li>
+                <li>changer le nom</li>
+            </ul>
+        </div>
+
+        <div class="mangas">
+            <ul class="liste-mangas">
+                {% for manga in mangas %}
+
+                <li>
+                    <a href="{{ path_for('manga', { 'name': manga.name }) }}">
+                        <span class="manga-img" style="background-image: url(/assets/images/onepiece.png)"></span>
+                        <span class="manga-text">{{ manga.name }}</span>
+                    </a>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
