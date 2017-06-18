@@ -7,7 +7,8 @@
  */
 namespace app\models\data;
 
-class Volume {
+class Volume
+{
     private $volume_number;
     private $path;
     private $add_date;
@@ -17,17 +18,22 @@ class Volume {
     private $manga;
     private $cover;
 
-    public function __construct($volume_number, $path, $manga) {
+    public function __construct($volume_number, $path, $manga, $cover) {
         $this->volume_number = $volume_number;
         $this->path = $path;
         $this->manga = $manga;
+        $this->cover = $cover;
     }
 
     public function getPath() {
         return $this->path;
     }
-    
-    public function getCover() {
-        return 3;
+
+    public function getManga() {
+        return $this->manga;
+    }
+
+    public function getVolumeNumber() {
+        return $this->volume_number;
     }
 }

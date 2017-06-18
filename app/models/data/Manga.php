@@ -24,8 +24,13 @@ class Manga {
         return $this->volumes;
     }
 
+    public function getVolume($volume_number) {
+        return $this->volumes[$volume_number];
+    }
+
     public function addVolume($volume) {
-        array_push($this->volumes, $volume);
+        $volume_number = $volume->getVolumeNumber();
+        $this->volumes[$volume_number] = $volume;
     }
 
     public function __toString() {

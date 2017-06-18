@@ -18,9 +18,8 @@ class Controller {
         $this->container->view->render($response, $template, $params);
     }
     
-    
-    
     public function redirect($response, $name) {
         return $response->withStatus(302)->withHeader('Location', $this->router->pathFor($name));
     }
+    
 }

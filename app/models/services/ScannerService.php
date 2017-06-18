@@ -29,13 +29,15 @@ class ScannerService {
                 } else {
                     $manga = $mangas[$manga_name];
                 }
-    
-                $volume = new Volume($name[1], $library_path . "\\" . $manga_file, $manga);
+                $volume_path = $library_path . "\\" . $manga_file;
+
+                $manga_files = scandir($volume_path);
+                $cover = $volume_path . "\\" . $manga_files[2]; //recuperer le premier image([0]: ., [1]: ..)
+
+                $volume = new Volume($name[1], $volume_path, $manga, $cover);
                 $manga->addVolume($volume);
                 //$manga = new Manga($name[0], $name[1], $library_path . "\\" . $manga_file);
                 //array_push($mangas, $manga);
-                
-                
     
             }
         }
