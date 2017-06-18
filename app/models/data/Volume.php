@@ -9,7 +9,7 @@ namespace app\models\data;
 
 class Volume
 {
-    private $volume_number;
+    private $volumeNumber;
     private $path;
     private $add_date;
     private $access_date;
@@ -18,8 +18,8 @@ class Volume
     private $manga;
     private $cover;
 
-    public function __construct($volume_number, $path, $manga, $cover) {
-        $this->volume_number = $volume_number;
+    public function __construct($volumeNumber, $path, $manga, $cover) {
+        $this->volumeNumber = $volumeNumber;
         $this->path = $path;
         $this->manga = $manga;
         $this->cover = $cover;
@@ -34,6 +34,10 @@ class Volume
     }
 
     public function getVolumeNumber() {
-        return $this->volume_number;
+        return $this->volumeNumber;
+    }
+    
+    public function getCover() {
+        return $this->cover;
     }
 }

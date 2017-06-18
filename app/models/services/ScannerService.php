@@ -7,7 +7,7 @@ use app\models\data\Volume;
 
 class ScannerService {
     public function scan($library_path) {
-        $files = scandir($library_path); //scanner des fichiers et envoie un array
+        $files = scandir($library_path); //scanner des dossiers(et fichiers) et envoie un array
         $mangas = array(); //creer un array pour ranger des mangas par nom
     
         for($i = 0; $i < count($files); $i++) {
@@ -31,8 +31,9 @@ class ScannerService {
                 }
                 $volume_path = $library_path . "\\" . $manga_file;
 
-                $manga_files = scandir($volume_path);
-                $cover = $volume_path . "\\" . $manga_files[2]; //recuperer le premier image([0]: ., [1]: ..)
+                $manga_files = scandir($volume_path); //scanner des fichiers dans le dossier et
+                $new_manga_files = str_replace('.', '_', $manga_files[2]);
+                $cover = '/manga/' . $manga_name . '/volume/' . $name[1] . '/' . $new_manga_files; //recuperer le premier fichier([0]: ., [1]: ..)
 
                 $volume = new Volume($name[1], $volume_path, $manga, $cover);
                 $manga->addVolume($volume);

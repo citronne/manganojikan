@@ -28,6 +28,11 @@ class Manga {
         return $this->volumes[$volume_number];
     }
 
+    public function getCover() {
+        $first_volume = array_values($this->volumes)[0];
+        return $first_volume->getCover();
+    }
+    
     public function addVolume($volume) {
         $volume_number = $volume->getVolumeNumber();
         $this->volumes[$volume_number] = $volume;
