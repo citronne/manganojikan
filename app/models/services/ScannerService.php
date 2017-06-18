@@ -13,14 +13,14 @@ class ScannerService {
         for($i = 0; $i < count($files); $i++) {
             $manga_file = $files[$i];
             if($manga_file != "." && $manga_file != "..") {
-                echo $manga_file, PHP_EOL;
+                //echo $manga_file, PHP_EOL;
                 $file_name = explode(".", $manga_file); //separer avec "."
-                echo $file_name[0], PHP_EOL; //"nom de manga" _ "numero de volume"
+                //echo $file_name[0], PHP_EOL; //"nom de manga" _ "numero de volume"
     
                 $name = explode("_", $file_name[0]); //separer avec "_"
-                echo $name[0], PHP_EOL; //nom
-                echo $name[1], PHP_EOL; //numero de volume
-                echo $library_path . $manga_file, PHP_EOL;
+                //echo $name[0], PHP_EOL; //nom
+                //echo $name[1], PHP_EOL; //numero de volume
+                //echo $library_path . $manga_file, PHP_EOL;
     
                 $manga_name = $name[0];
                 if(!in_array($manga_name, $mangas)){
@@ -32,10 +32,15 @@ class ScannerService {
                 $volume_path = $library_path . "\\" . $manga_file;
 
                 $manga_files = scandir($volume_path); //scanner des fichiers dans le dossier et
-                $new_manga_files = str_replace('.', '_', $manga_files[2]);
-                $cover = '/manga/' . $manga_name . '/volume/' . $name[1] . '/' . $new_manga_files; //recuperer le premier fichier([0]: ., [1]: ..)
+                $new_manga_files = str_replace('.', '_', $manga_files[2]); //([0]: ., [1]: ..)
+                $cover = '/manga/' . $manga_name . '/volume/' . $name[1] . '/' . $new_manga_files; //recuperer le premier fichier
 
-                $volume = new Volume($name[1], $volume_path, $manga, $cover);
+                $file_names = array();
+                for($i = 2; $i < count($manga_files); $i++) {
+                    array_push($file_names, str_replace('.', '_', $manga_files[$i]));
+                }
+
+                $volume = new Volume($name[1], $volume_path, $manga, $cover, $file_names);
                 $manga->addVolume($volume);
                 //$manga = new Manga($name[0], $name[1], $library_path . "\\" . $manga_file);
                 //array_push($mangas, $manga);

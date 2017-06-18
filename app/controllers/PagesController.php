@@ -48,7 +48,18 @@ class PagesController extends Controller {
         $response = $response->withAddedHeader('Content-Type', 'image/' . $part[1]);
         return $response->write($file);
     }
-    
+
+    public function readerJson(Request $request, Response $response, $args) {
+        $manga_name = $args["name"];
+        $volume_number = $args["number"];
+        $mangas = $this->container->scanner->scan('D:\\manga');
+        $manga = $mangas[$manga_name];
+        $volume = $manga->getVolume($volume_number);
+        $json = json_encode($volume);
+        $response = $response->withAddedHeader('Content-Type', 'application/json');
+        return $response->write($json);
+    }
+
     /*public function getContact($request, $response, $args) {
         $this->render($response, 'pages/contact.twig');
     }

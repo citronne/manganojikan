@@ -7,7 +7,7 @@
  */
 namespace app\models\data;
 
-class Volume
+class Volume implements \JsonSerializable
 {
     private $volumeNumber;
     private $path;
@@ -17,12 +17,14 @@ class Volume
     private $page_number;
     private $manga;
     private $cover;
+    private $file_names;
 
-    public function __construct($volumeNumber, $path, $manga, $cover) {
+    public function __construct($volumeNumber, $path, $manga, $cover, $file_names) {
         $this->volumeNumber = $volumeNumber;
         $this->path = $path;
         $this->manga = $manga;
         $this->cover = $cover;
+        $this->file_names = $file_names;
     }
 
     public function getPath() {
@@ -39,5 +41,14 @@ class Volume
     
     public function getCover() {
         return $this->cover;
+    }
+    
+    public function saveFiles() {
+        return $this->file_names;
+    }
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+        return $vars;
     }
 }

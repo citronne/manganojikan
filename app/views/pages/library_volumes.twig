@@ -22,7 +22,7 @@
 
                 {% for volume in manga.volumes %}
                     <li>
-                        <a href="{{ path_for('reader', { 'name': manga.name , 'number': volume.volumeNumber}) }}">
+                        <a href="{{ path_for('reader', { 'name': manga.name , 'number': volume.volumeNumber, 'image_name' = }) }}">
                             <span class="manga-img" style="background-image: url({{ volume.cover }})"></span>
                             <span class="manga-text">{{ volume.volumeNumber }}</span>
                         </a>
