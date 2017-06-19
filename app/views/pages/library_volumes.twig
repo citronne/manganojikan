@@ -3,10 +3,6 @@
 {% block content %}
     {#{{ dump(mangas) }}#}
 
-<h1>
-    {{ manga.name }}
-</h1>
-
     <div class="container">
         <div class="side-menu">
             <ul>
@@ -19,10 +15,13 @@
 
         <div class="mangas">
             <ul class="liste-mangas">
+                <h1>
+                    {{ manga.name }}
+                </h1>
 
                 {% for volume in manga.volumes %}
                     <li>
-                        <a href="{{ path_for('reader', { 'name': manga.name , 'number': volume.volumeNumber, 'image_name' = }) }}">
+                        <a href="{{ path_for('reader', { 'name': manga.name , 'number': volume.volumeNumber }) }}">
                             <span class="manga-img" style="background-image: url({{ volume.cover }})"></span>
                             <span class="manga-text">{{ volume.volumeNumber }}</span>
                         </a>

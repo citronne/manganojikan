@@ -9,7 +9,9 @@ class ScannerService {
     public function scan($library_path) {
         $files = scandir($library_path); //scanner des dossiers(et fichiers) et envoie un array
         $mangas = array(); //creer un array pour ranger des mangas par nom
-    
+
+        //var_dump($files);
+
         for($i = 0; $i < count($files); $i++) {
             $manga_file = $files[$i];
             if($manga_file != "." && $manga_file != "..") {
@@ -36,8 +38,8 @@ class ScannerService {
                 $cover = '/manga/' . $manga_name . '/volume/' . $name[1] . '/' . $new_manga_files; //recuperer le premier fichier
 
                 $file_names = array();
-                for($i = 2; $i < count($manga_files); $i++) {
-                    array_push($file_names, str_replace('.', '_', $manga_files[$i]));
+                for($j = 2; $j < count($manga_files); $j++) {
+                    array_push($file_names, str_replace('.', '_', $manga_files[$j]));
                 }
 
                 $volume = new Volume($name[1], $volume_path, $manga, $cover, $file_names);

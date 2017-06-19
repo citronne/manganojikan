@@ -15,6 +15,7 @@ class PagesController extends Controller {
     
     public function home($request, $response, $args) {
         $mangas = $this->container->scanner->scan('D:\\manga');
+        var_dump($mangas);
         //file_put_contents('php://stderr', print_r($mangas, TRUE));
         $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
     }
