@@ -1,17 +1,26 @@
 .container {
     display: flex;
+    align-items: center;
+}
+
+i {
+    color: midnightblue;
 }
 
 .fa-arrow-circle-left {
     flex: 1;
+    text-align: center;
 }
 
 .fa-arrow-circle-right {
     flex: 1;
+    text-align: center;
 }
 
 .reading {
-    width: 100px;
-    height: 400px;
-    flex: 5;
+    flex: 1;
+}
+
+.reading img {
+    height: 93vh;
 }
