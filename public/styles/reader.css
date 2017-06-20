@@ -17,10 +17,10 @@ i {
     text-align: center;
 }
 
-.reading {
+.current-page {
     flex: 1;
 }
 
-.reading img {
+.current-page img {
     height: 93vh;
 }

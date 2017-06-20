@@ -1,12 +1,17 @@
 {% extends "layout.twig" %}
 
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="/styles/reader.css" media="screen"/>
+{% endblock %}
+
 {% block content %}
-    <div class="container">
-    <i class="fa fa-arrow-circle-left" aria-hidden="true" style="font-size: 5rem"></i>
-    <div class="current-page">
-        <img src="" alt="current page"/>
-    </div>
-    <i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 5rem"></i>
+    <div class="fullscreenBtn">Fullscreen</div>
+    <div class="container noselect">
+        <i class="fa fa-arrow-circle-left" aria-hidden="true" style="font-size: 5rem"></i>
+        <div class="current-page">
+            <img src="" alt="current page"/>
+        </div>
+        <i class="fa fa-arrow-circle-right" aria-hidden="true" style="font-size: 5rem"></i>
     </div>
 {% endblock %}
 
