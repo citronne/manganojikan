@@ -31,6 +31,10 @@ class PagesController extends Controller {
         $this->render($response, 'pages/reader.twig');
     }
 
+    public function setting($request, $response, $args) {
+        $this->render($response, 'pages/setting.twig');
+    }
+
     public function sendImage(Request $request, Response $response, $args) {
         $manga_name = $args["name"];
         $volume_number = $args["number"];

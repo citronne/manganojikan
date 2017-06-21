@@ -12,11 +12,11 @@ function getData() {
    });
 }
 
-$('.fa.fa-arrow-circle-left').click(function () {
+$('.icon_left').click(function () {
     changePage(false);
 });
 
-$('.fa.fa-arrow-circle-right').click(function () {
+$('.icon_right').click(function () {
     changePage(true);
 });
 
@@ -58,6 +58,12 @@ function changePage(inc) {
         $( ".current-page>img" ).attr( "src", path + "/" + file);
     }
 }
+
+/*$(function(){
+    $( ".container" ).bind( "tap", tapHandler );
+    changePage(inc);
+    });
+*/
 
 getData();
 $(".fullscreenBtn").click(function() {
