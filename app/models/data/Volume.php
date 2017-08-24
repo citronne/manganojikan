@@ -7,8 +7,8 @@
  */
 namespace app\models\data;
 
-class Volume implements \JsonSerializable
-{
+class Volume implements \JsonSerializable {
+    private $id;
     private $volumeNumber;
     private $path;
     private $add_date;
@@ -25,6 +25,10 @@ class Volume implements \JsonSerializable
         $this->manga = $manga;
         $this->cover = $cover;
         $this->file_names = $file_names;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
     }
 
     public function getPath() {

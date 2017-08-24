@@ -8,6 +8,7 @@
 namespace app\models\data;
 
 class Manga {
+    private $id;
     private $name;
     private $volumes;
 
@@ -15,7 +16,14 @@ class Manga {
         $this->name = $name;
         $this->volumes = array();
     }
-
+    
+    public function getId() {
+        return $this->id;
+    }
+    
+    public function setId($id) {
+        $this->id = $id;
+    }
     public function getName() {
         return $this->name;
     }

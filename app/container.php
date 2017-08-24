@@ -24,3 +24,7 @@ $container['view'] = function ($container) {
 $container['scanner'] = function ($container) {
   return new app\models\services\ScannerService();
 };
+
+$container['library'] = function ($container) {
+    return new \app\models\services\LibraryService();
+};

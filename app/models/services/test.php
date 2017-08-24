@@ -9,6 +9,7 @@
 require 'ScannerService.php';
 require '../data/Manga.php';
 require '../data/Volume.php';
+require '../data/Library.php';
 
 $service = new \app\models\services\ScannerService();
 $mangas = $service->scan("D:\\manga");

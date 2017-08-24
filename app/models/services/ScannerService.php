@@ -2,13 +2,15 @@
 
 namespace app\models\services;
 
+use app\models\data\Library;
 use app\models\data\Manga;
 use app\models\data\Volume;
+use app\models\services\db\BaseDB;
 
 class ScannerService {
     public function scan($library_path) {
+        $library = new Library($library_path);
         $files = scandir($library_path); //scanner des dossiers(et fichiers) et envoie un array
-        $mangas = array(); //creer un array pour ranger des mangas par nom
 
         //var_dump($files);
 
@@ -25,12 +27,12 @@ class ScannerService {
                 //echo $library_path . $manga_file, PHP_EOL;
     
                 $manga_name = $name[0];
-                if(!in_array($manga_name, $mangas)){
+                $manga = $library->getManga($manga_name);
+                if ($manga == null) {
                     $manga = new Manga($manga_name); //creer le nouveau
-                    $mangas[$manga_name] = $manga; //et mettre
-                } else {
-                    $manga = $mangas[$manga_name];
+                    $library->addManga($manga);
                 }
+                //var_dump($manga);
                 $volume_path = $library_path . "\\" . $manga_file;
 
                 $manga_files = scandir($volume_path); //scanner des fichiers dans le dossier et
@@ -49,8 +51,11 @@ class ScannerService {
     
             }
         }
+        
+        BaseDB::saveToDB($library);
     
-        return $mangas;
+        return $library->getMangas();
     }
+
     
 }
