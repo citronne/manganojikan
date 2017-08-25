@@ -45,28 +45,44 @@ class BaseDB {
     }
     
     public static function loadDB() {
-        if ($row = LibraryDB::select()){
+
+        $libraries = array();
+        $mangas = array();
+
+        LibraryDB::select(function ($row) use (&$libraries) {
             $id = $row["id"];
             $path = $row["path"];
-            $library = new Library($path);
-        }
+            $library = new Library($path, $id);
+            $libraries[$id] = $library;
+        });
 
-        if ($row = MangaDB::select()){
+        MangaDB::select(function ($row) use (&$libraries, &$mangas) {
             $id = $row["id"];
             $id_library = $row["id_library"];
             $name = $row["name"];
-            $manga = new Manga($name);
-        }
+            $manga = new Manga($name, $id);
+            $current_library = $libraries[$id_library];
+            $current_library->addManga($manga);
+            $mangas[$id] = $manga;
+        });
 
-        if ($row = VolumeDB::select()){
+
+        VolumeDB::select(function ($row) use (&$mangas) {
             $id = $row["id"];
             $id_manga = $row["id_manga"];
             $volume_number = $row["volume_number"];
             $path = $row["path"];
             $add_date = $row["add_date"];
             $access_date = $row["access_date"];
-            $read_status = $row["read_status"]
-            $volume = new Volume($volume_number, $path, $manga, , );
-        }
+            $read_status = $row["read_status"];
+            $current_manga = $mangas[$id_manga];
+            $file_names = explode(",", $row["file_names"]);
+            $cover = '/manga/' . $current_manga->getName() . '/volume/' . $volume_number . '/' . $file_names[0];
+            $volume = new Volume($volume_number, $path, $cover, $file_names);
+            
+            $current_manga->addVolume($volume);
+        });
+        
+        return array_values($libraries)[0];
     }
 }

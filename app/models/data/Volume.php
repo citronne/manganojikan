@@ -15,14 +15,12 @@ class Volume implements \JsonSerializable {
     private $access_date;
     private $read;
     private $page_number;
-    private $manga;
     private $cover;
     private $file_names;
 
-    public function __construct($volumeNumber, $path, $manga, $cover, $file_names) {
+    public function __construct($volumeNumber, $path, $cover, $file_names) {
         $this->volumeNumber = $volumeNumber;
         $this->path = $path;
-        $this->manga = $manga;
         $this->cover = $cover;
         $this->file_names = $file_names;
     }
@@ -34,11 +32,7 @@ class Volume implements \JsonSerializable {
     public function getPath() {
         return $this->path;
     }
-
-    public function getManga() {
-        return $this->manga;
-    }
-
+    
     public function getVolumeNumber() {
         return $this->volumeNumber;
     }
@@ -47,7 +41,7 @@ class Volume implements \JsonSerializable {
         return $this->cover;
     }
     
-    public function saveFiles() {
+    public function getFileNames() {
         return $this->file_names;
     }
 

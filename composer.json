@@ -13,6 +13,7 @@
     },
     "require": {
         "slim/slim": "^3.8",
-        "slim/twig-view": "^2.2"
+        "slim/twig-view": "^2.2",
+        "tracy/tracy": "^2.4"
     }
 }

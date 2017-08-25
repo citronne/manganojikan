@@ -14,7 +14,8 @@ class Library {
     private $path;
     private $mangas;
 
-    public function __construct($path) {
+    public function __construct($path, $id = null) {
+        $this->id = $id;
         $this->path = $path;
         $this->mangas = array();
     }

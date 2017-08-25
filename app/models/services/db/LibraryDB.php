@@ -11,19 +11,20 @@ namespace app\models\services\db;
 class LibraryDB {
     public static function insert($library) {
         $link = BaseDB::connect();
-        $path = $library->getPath();
+        $path = mysqli_real_escape_string($link, $library->getPath());
         $sql = "INSERT INTO library (id, path) VALUES (NULL, '$path')";
         mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
         $library->setId(mysqli_insert_id($link));
         mysqli_close($link);
     }
 
-    public static function select() {
+    public static function select($cb) {
         $link = BaseDB::connect();
         $sql = "SELECT * FROM library";
         $res = mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
-        $row = mysqli_fetch_assoc($res);
+        while ($row = mysqli_fetch_assoc($res)) {
+            $cb($row);
+        }
         mysqli_close($link);
-        return $row;
     }
 }

@@ -22,7 +22,7 @@ class ScannerService {
                 //echo $file_name[0], PHP_EOL; //"nom de manga" _ "numero de volume"
     
                 $name = explode("_", $file_name[0]); //separer avec "_"
-                //echo $name[0], PHP_EOL; //nom
+                //echo $name[0], PHP_EOL; //nom de manga
                 //echo $name[1], PHP_EOL; //numero de volume
                 //echo $library_path . $manga_file, PHP_EOL;
     
@@ -35,16 +35,17 @@ class ScannerService {
                 //var_dump($manga);
                 $volume_path = $library_path . "\\" . $manga_file;
 
-                $manga_files = scandir($volume_path); //scanner des fichiers dans le dossier et
-                $new_manga_files = str_replace('.', '_', $manga_files[2]); //([0]: ., [1]: ..)
-                $cover = '/manga/' . $manga_name . '/volume/' . $name[1] . '/' . $new_manga_files; //recuperer le premier fichier
+                $manga_files = scandir($volume_path); //scanner des fichiers dans le dossier
 
                 $file_names = array();
                 for($j = 2; $j < count($manga_files); $j++) {
-                    array_push($file_names, str_replace('.', '_', $manga_files[$j]));
+                    array_push($file_names, str_replace('.', '_', $manga_files[$j])); //remplacer des "." par "_" pour puvoir afficher des phptos sur navigateur
                 }
 
-                $volume = new Volume($name[1], $volume_path, $manga, $cover, $file_names);
+                $volume_number = $name[1];
+                $cover = '/manga/' . $manga_name . '/volume/' . $volume_number . '/' . $file_names[0]; //recuperer le premier fichier
+
+                $volume = new Volume($name[1], $volume_path, $cover, $file_names);
                 $manga->addVolume($volume);
                 //$manga = new Manga($name[0], $name[1], $library_path . "\\" . $manga_file);
                 //array_push($mangas, $manga);
@@ -54,7 +55,7 @@ class ScannerService {
         
         BaseDB::saveToDB($library);
     
-        return $library->getMangas();
+        return $library;
     }
 
     

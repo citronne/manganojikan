@@ -14,14 +14,14 @@ use Slim\Http\Response;
 class PagesController extends Controller {
     
     public function home($request, $response, $args) {
-        $mangas = $this->container->db->load;
+        $mangas = $this->container->library->getMangas();
         //var_dump($mangas);
         //file_put_contents('php://stderr', print_r($mangas, TRUE));
         $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
     }
     
     public function manga($request, $response, $args) {
-        $mangas = $this->container->scanner->scan('D:\\manga');
+        $mangas = $this->container->library->getMangas();
         $manga_name = $args["name"];
         $manga = $mangas[$manga_name];
         $this->render($response, 'pages/library_volumes.twig', ['manga' => $manga]);
@@ -41,12 +41,14 @@ class PagesController extends Controller {
         $img_name = $args["image_name"];
         
         $part = explode('_', $img_name);
+        //var_dump($part);
 
-        $mangas = $this->container->scanner->scan('D:\\manga');
+        $mangas = $this->container->library->getMangas();
 
         $manga = $mangas[$manga_name];
         $volume = $manga->getVolume($volume_number);
         $path = $volume->getPath();
+        //var_dump($path);
         $path_complete = $path . '\\' . $part[0] . '.' . $part[1];
 
         $file = file_get_contents($path_complete);
@@ -57,11 +59,17 @@ class PagesController extends Controller {
     public function readerJson(Request $request, Response $response, $args) {
         $manga_name = $args["name"];
         $volume_number = $args["number"];
-        $mangas = $this->container->scanner->scan('D:\\manga');
+        $mangas = $this->container->library->getMangas();
         $manga = $mangas[$manga_name];
         $volume = $manga->getVolume($volume_number);
         $json = json_encode($volume);
         $response = $response->withAddedHeader('Content-Type', 'application/json');
+        return $response->write($json);
+    }
+
+    public function scan(Request $request, Response $response, $args) {
+        $library = $this->container->scanner->scan('D:\\manga');
+        $json = json_encode($library);
         return $response->write($json);
     }
 

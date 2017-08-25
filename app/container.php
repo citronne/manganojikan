@@ -26,5 +26,12 @@ $container['scanner'] = function ($container) {
 };
 
 $container['library'] = function ($container) {
-    return new \app\models\services\LibraryService();
+    if (!isset($_SESSION["library"])) {
+        $library_service = new \app\models\services\LibraryService();
+        $library = $library_service->loadLibrary();
+        $_SESSION["library"] = $library;
+    } else {
+        $library = $_SESSION["library"];
+    }
+    return $library;
 };

@@ -14,11 +14,12 @@ CREATE TABLE IF NOT EXISTS `manga` (
 CREATE TABLE IF NOT EXISTS `volume` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id_manga` int(11) NOT NULL,
-  `volume_number` int(11) NOT NULL,
+  `volume_number` VARCHAR(255) NOT NULL,
   `path` varchar(255) NOT NULL,
   `add_date` date NOT NULL,
   `access_date` date,
   `read_status` tinyint(1) NOT NULL,
   `page_number` int(11) NOT NULL,
+  `file_names` LONGTEXT NOT NULL,
   FOREIGN KEY (`id_manga`) REFERENCES `manga` (`id`)
 );
