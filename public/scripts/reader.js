@@ -12,6 +12,23 @@ function getData() {
    });
 }
 
+$(document).ready(function() {
+    $('.current-page').click(function(event) {
+        
+        var position_offset = $(this).offset();
+
+        var positon = event.pageX;
+
+        var width = $(this).width();
+
+        if(positon < position_offset.left + width/2) {
+            changePage(false);
+        } else {
+            changePage(true);
+        }
+    });
+});
+
 $('.icon_left').click(function () {
     changePage(false);
 });
@@ -65,7 +82,9 @@ function changePage(inc) {
     });
 */
 
+
 getData();
 $(".fullscreenBtn").click(function() {
     toggleFullScreen($(".container")[0]);
 });
+
