@@ -7,10 +7,9 @@ i {
     color: midnightblue;
 }
 
-.fa-arrows-alt {
-    font-size: 3rem;
+nav i.fa {
+    padding-right: 1rem;
 }
-
 
 .icon {
     height: 85vh;
@@ -20,6 +19,18 @@ i {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+
+    .icon {
+        display: none;
+    }
+
+    .current-page {
+        overflow: scroll;
+        direction: rtl;
+    }
 }
 
 .container:-webkit-full-screen {
@@ -60,7 +71,6 @@ i {
 .container:fullscreen .icon {
     min-width: 15rem;
 }
-
 
 .fa-arrow-circle-right {
     vertical-align: middle;

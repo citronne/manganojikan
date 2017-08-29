@@ -1,0 +1,17 @@
+{% extends "layout.twig" %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="/styles/user.css" media="screen"/>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="id">Utilisateur</label>
+        <input type="text" id="user_name" name="user_name"/><br/>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password"/><br/>
+        <label for="password">Mot de passe (confirmer)</label>
+        <input type="password" id="password2" name="password2"/><br/>
+        <button type="submit" value="s'inscrire">S'inscire</button>
+    </form>
+{% endblock %}

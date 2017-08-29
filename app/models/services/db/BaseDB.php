@@ -82,6 +82,7 @@ class BaseDB {
             
             $current_manga->addVolume($volume);
         });
+
         
         return array_values($libraries)[0];
     }

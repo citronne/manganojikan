@@ -3,18 +3,21 @@
  */
 var data;
 var i = 0;
+var scrollLeft;
 
 function getData() {
    $.getJSON(window.location.pathname + "/reader", function (volume_data) {
-       console.log(volume_data.cover);
+       //console.log(volume_data.cover);
        data = volume_data;
        $( ".current-page>img" ).attr( "src", volume_data.cover);
    });
 }
 
 $(document).ready(function() {
-    $('.current-page').click(function(event) {
-        
+    var current_page = $(".current-page");
+
+    current_page.click(function(event) {
+
         var position_offset = $(this).offset();
 
         var positon = event.pageX;
@@ -22,20 +25,34 @@ $(document).ready(function() {
         var width = $(this).width();
 
         if(positon < position_offset.left + width/2) {
-            changePage(false);
-        } else {
             changePage(true);
+        } else {
+            changePage(false);
         }
     });
+
+    $('.icon_left').click(function () {
+        changePage(true);
+    });
+
+    $('.icon_right').click(function () {
+        changePage(false);
+    });
+
+    $(".fullscreenBtn").click(function() {
+        toggleFullScreen($(".container")[0]);
+    });
+
+    var img=$(".current-page>img");
+
+    img.on("load", function () {
+        console.log("load");
+        current_page.scrollLeft(scrollLeft);
+    });
+
 });
 
-$('.icon_left').click(function () {
-    changePage(false);
-});
 
-$('.icon_right').click(function () {
-    changePage(true);
-});
 
 function toggleFullScreen(elem) {
     // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
@@ -66,13 +83,27 @@ function changePage(inc) {
     var path = window.location.pathname;
     var files = data.file_names;
     var file;
+
     if (inc && i < files.length - 1) {
-        file = files[++i];
+        i++;
+        file = files[i];
+        scrollLeft = 1000;
     } else if (!inc && i > 0) {
-        file = files[--i];
+        i--;
+        file = files[i];
+        scrollLeft = 0;
     }
     if (file) {
-        $( ".current-page>img" ).attr( "src", path + "/" + file);
+        var images = {};
+        var img = $( ".current-page>img" );
+        img.attr( "src", path + "/" + file);
+
+        //for (var j = i + 1; j < i + 3; j++) {
+        //    images[j] = new Image();
+        //    file = files[j];
+
+        var next_image = new Image();
+        next_image.src = path + "/" + files[i+1];
     }
 }
 
@@ -84,7 +115,4 @@ function changePage(inc) {
 
 
 getData();
-$(".fullscreenBtn").click(function() {
-    toggleFullScreen($(".container")[0]);
-});
 

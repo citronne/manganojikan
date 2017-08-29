@@ -39,13 +39,18 @@ nav ul {
     padding-left: 0px;
 }
 
-nav i {
+nav i.fa {
     color: white;
+    font-size: 1.8rem;
 }
 
-nav .home-btn{
+nav .home-btn {
     -webkit-flex: 1;
     flex: 1;
+}
+
+nav .user {
+    padding-right: 1rem;
 }
 
 .search-box {

@@ -23,6 +23,7 @@ nav .fa-home {
 }
 
 @media screen and (max-width: 425px) {
+
     .liste-mangas {
         grid-template-columns: 1fr 1fr 1fr;
         grid-auto-rows: 20vh;

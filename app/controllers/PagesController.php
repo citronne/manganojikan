@@ -28,7 +28,28 @@ class PagesController extends Controller {
     }
 
     public function reader($request, $response, $args) {
-        $this->render($response, 'pages/reader.twig');
+        $mangas = $this->container->library->getMangas();
+        $manga_name = $args["name"];
+        $manga = $mangas[$manga_name];
+        $this->render($response, 'pages/reader.twig', ['manga' => $manga]);
+    }
+
+    public function register($request, $response, $args) {
+        $this->render($response, 'pages/register.twig');
+    }
+
+    public function createNewUser($request, $response, $args) {
+        $user_name = $_POST["user_name"];
+        $password = $_POST["password"];
+        $password2 = $_POST["password2"];
+
+        echo $user_name;
+
+        //$this->render($response, 'pages/register.twig');
+    }
+
+    public function login($request, $response, $args) {
+        $this->render($response, 'pages/login.twig');
     }
 
     public function setting($request, $response, $args) {
@@ -36,6 +57,9 @@ class PagesController extends Controller {
     }
 
     public function sendImage(Request $request, Response $response, $args) {
+        header_remove('Cache-Control');
+        header_remove('Pragma');
+
         $manga_name = $args["name"];
         $volume_number = $args["number"];
         $img_name = $args["image_name"];
@@ -52,7 +76,10 @@ class PagesController extends Controller {
         $path_complete = $path . '\\' . $part[0] . '.' . $part[1];
 
         $file = file_get_contents($path_complete);
-        $response = $response->withAddedHeader('Content-Type', 'image/' . $part[1]);
+        $response = $response
+            ->withHeader('Cache-Control', 'max-age=2592000, public')
+            ->withHeader('Content-Type', 'image/' . $part[1])
+            ->withoutHeader('Pragma');
         return $response->write($file);
     }
 

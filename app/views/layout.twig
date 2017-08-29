@@ -16,14 +16,19 @@
 <body>
 <nav>
     <div class="menu">
-        <div class="home-btn"><a href="{{ path_for('homepage')}}"><i class="fa fa-home" aria-hidden="true" style="font-size: 1.8rem"></i></a></div>
+        <div class="home-btn"><a href="{{ path_for('homepage')}}"><i class="fa fa-home" aria-hidden="true"></i></a></div>
+        <div class="user">
+            <a href="{{ path_for('register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+            <a href="{{ path_for('login')}}"><i class="fa fa-user" aria-hidden="true"></i></a>
+        </div>
+        {% block customMenu %}{% endblock %}
         <div class="menu-search">
                 <span class="search-box">
                     <input type="search" id="search" placeholder="Search..." />
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </span>
         </div>
-        <div><a href="setting.html"><i class="fa fa-cog" aria-hidden="true" style="font-size: 1.8rem"></i></a></div>
+        <div><a href="{{ path_for('setting')}}"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
     </div>
 </nav>
 
@@ -42,7 +47,10 @@
     {% block content %}{% endblock %}
 #}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src='/vendor/jquery/jquery-3.2.1.min.js'></script>
+    <script type="text/javascript" src='/scripts/common.js'></script>
+{% endblock %}
 
 </body>
 </html>

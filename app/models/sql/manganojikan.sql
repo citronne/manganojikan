@@ -23,3 +23,8 @@ CREATE TABLE IF NOT EXISTS `volume` (
   `file_names` LONGTEXT NOT NULL,
   FOREIGN KEY (`id_manga`) REFERENCES `manga` (`id`)
 );
+
+id
+username
+pass
+id library

@@ -4,8 +4,12 @@
     <link rel="stylesheet" type="text/css" href="/styles/reader.css" media="screen"/>
 {% endblock %}
 
-{% block content %}
+{% block customMenu %}
+    <div class="book"><a href={{ path_for('manga' ,{ 'name': manga.name}) }}><i class="fa fa-book" aria-hidden="true"></i></a></div>
     <div class="fullscreenBtn"><i class="fa fa-arrows-alt" aria-hidden="true"></i></div>
+{% endblock %}
+
+{% block content %}
     <div class="container noselect">
         <div class="icon_left icon"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></div>
         <div class="current-page">
