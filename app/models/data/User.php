@@ -14,9 +14,9 @@ class User {
     private $user_name;
     private $library;
     
-    public function __construct($user_name, $mangas) {
+    public function __construct($user_name, $library) {
         $this->user_name = $user_name;
-        $this->mangas = array();
+        $this->library = $library;
     }
     
     public function setId($id) {
@@ -27,19 +27,11 @@ class User {
         return $this->id;
     }
     
-    public function getMangas() {
-        return $this->mangas;
-    }
-    
-    public function getAccessDate() {
-        return $this->access_date;
+    public function getUserName() {
+        return $this->user_name;
     }
 
-    public function getReadStatus() {
-        return $this->read_status;
-    }
-    
-    public function setPageNumber($page_number) {
-        $this->page_number = $page_number;
+    public function getLibrary() {
+        return $this->library;
     }
 }

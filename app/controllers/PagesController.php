@@ -11,15 +11,16 @@ namespace app\controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class PagesController extends Controller {
-    
+class PagesController extends Controller
+{
+
     public function home($request, $response, $args) {
         $mangas = $this->container->library->getMangas();
         //var_dump($mangas);
         //file_put_contents('php://stderr', print_r($mangas, TRUE));
         $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
     }
-    
+
     public function manga($request, $response, $args) {
         $mangas = $this->container->library->getMangas();
         $manga_name = $args["name"];
@@ -43,12 +44,21 @@ class PagesController extends Controller {
         $password = $_POST["password"];
         $password2 = $_POST["password2"];
 
-        echo $user_name;
+        if ($password != $password2) {
+            echo "Veuillez reinserer le mot de pass.";
+        }
 
-        //$this->render($response, 'pages/register.twig');
+        $this->render($response, 'pages/register.twig', "error");
     }
 
     public function login($request, $response, $args) {
+        $this->render($response, 'pages/login.twig');
+    }
+
+    public function identify($request, $response, $args) {
+        $id = $_POST["id"];
+        $password = $_POST["password"];
+
         $this->render($response, 'pages/login.twig');
     }
 
@@ -63,8 +73,8 @@ class PagesController extends Controller {
         $manga_name = $args["name"];
         $volume_number = $args["number"];
         $img_name = $args["image_name"];
-        
-        $part = explode('_', $img_name);
+
+        $part = preg_split('~_(?=[^_]*$)~', $img_name);
         //var_dump($part);
 
         $mangas = $this->container->library->getMangas();
@@ -97,6 +107,7 @@ class PagesController extends Controller {
     public function scan(Request $request, Response $response, $args) {
         $library = $this->container->scanner->scan('D:\\manga');
         $json = json_encode($library);
+        unset($_SESSION["library"]);
         return $response->write($json);
     }
 

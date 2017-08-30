@@ -10,6 +10,16 @@ nav .fa-home {
     grid-auto-rows: 20vh;
 }
 
+.liste-mangas h1 {
+    font-family: Impact, Charcoal, sans-serif;
+    color: #3d3d5c;
+}
+
+.manga-text{
+    font-family: Impact, Charcoal, sans-serif;
+    color: #3d3d5c;
+}
+
 @media screen and (max-width: 768px) {
 
     .side-menu {

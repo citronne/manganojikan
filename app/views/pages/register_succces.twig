@@ -1,0 +1,17 @@
+{% extends "layout.twig" %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="/styles/user.css" media="screen"/>
+{% endblock %}
+
+{% block content %}
+    <p>Création reussie</p>
+    <p>Connectez-vous</p>
+    <form method="post">
+        <label for="id">Identifiant</label>
+        <input type="text" id="id" name="id"/><br/>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password"/><br/>
+        <input type="button" value="se connecter"/>
+    </form>
+{% endblock %}
