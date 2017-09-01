@@ -36,6 +36,6 @@ $container['library'] = function ($container) {
     return $library;
 };
 
-$container['user'] = function ($container) {
+$container['userService'] = function ($container) {
     return new app\models\services\UserService();
 };

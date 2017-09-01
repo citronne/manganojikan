@@ -3,6 +3,7 @@
 namespace app\models\services;
 
 use app\models\services\db\UserDB;
+use app\models\services\db\BaseDB;
 /**
  * Created by IntelliJ IDEA.
  * User: sayaka
@@ -10,17 +11,22 @@ use app\models\services\db\UserDB;
  * Time: 21:27
  */
 class UserService {
-    public static function createUser($password, $user) {
-        
-        } else {
-            return $password;
-        }
+    public function createUser($user_name, $password) {
+        UserDB::insert($user_name, $password);
+        echo "Création réussite";
+    }
 
+    public static function verify($user_name) {
+        $link = BaseDB::connect();
+        $user_name = mysqli_real_escape_string($link, $user_name);
+        $sql = "SELECT user_name FROM user WHERE user_name = '$user_name'";
+        $res = mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
+        $row = mysqli_fetch_assoc($res);
+        mysqli_close($link);
+        return $row;
     }
     
-    public static function identify() {
-        $id = $_POST["id"];
-        $pass = $_POST["password"];
+    public function identify($id, $pass) {
         $row = UserDB::select();
         while ($row) {
             $user_name = $row["user_name"];
@@ -31,4 +37,5 @@ class UserService {
          }
 
     }
+    
 }

@@ -10,14 +10,12 @@ namespace app\models\services\db;
 
 
 class UserDB {
-    public static function insert($library) {
-        $password = UserDB::createUser();
-        $user_name = $_POST["user_name"];
-        $id_library = $library->getId();
+    public static function insert($user_name, $password) {
         $link = BaseDB::connect();
         $user_name = mysqli_real_escape_string($link, $user_name);
         $password = mysqli_real_escape_string($link, $password);
-        $sql = "INSERT INTO USER (id, user_name, password, id_library) VALUES (NULL, '$user_name', '$password', '$id_library')";
+        $pass = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO USER (id, user_name, password) VALUES (NULL, '$user_name', '$pass')";
         mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
         mysqli_close($link);
     }

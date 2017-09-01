@@ -2,18 +2,25 @@
 
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="/styles/user.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/styles/register.css" media="screen"/>
 {% endblock %}
 
 {% block content %}
+    <div class="error">
+        <ul>
+            {% for message in error %} <li>{{ message }}</li> {% endfor %}
+        </ul>
+    </div>
     <div class="user">
-        <form action="UserDB.php" method="post">
+        <p>Créer un compte</p>
+        <form action="/register" method="post">
             <label for="id">Utilisateur</label><br/>
-            <input type="text" id="user_name" name="user_name"/><br/>
+            <input type="text" class="input-box" id="user_name" name="user_name"/><br/>
             <label for="password">Mot de passe</label><br/>
-            <input type="password" id="password" name="password"/><br/>
+            <input type="password" class="input-box" id="password" name="password"/><br/>
             <label for="password">Mot de passe (confirmer)</label><br/>
-            <input type="password" id="password2" name="password2"/><br/>
-            <input type="button" class="login_button" value="s'inscrire"/>
+            <input type="password" class="input-box" id="password2" name="password2"/><br/>
+            <button value="register" class="input-box">s'inscrire</button>
         </form>
     </div>
 {% endblock %}

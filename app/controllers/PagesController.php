@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\services\UserService;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -40,15 +41,35 @@ class PagesController extends Controller
     }
 
     public function createNewUser($request, $response, $args) {
+        $error_msg =[];
         $user_name = $_POST["user_name"];
         $password = $_POST["password"];
         $password2 = $_POST["password2"];
-
-        if ($password != $password2) {
-            echo "Veuillez reinserer le mot de pass.";
+        $row = $this->container->userService->verify($user_name);
+        
+        if (!empty($row)){
+            array_push($error_msg, "Nom de utilisateur déjà existe. Veuillez changez le nom.");
+        }
+        if (empty($user_name)) {
+            array_push($error_msg, "Veuillez inserer le nom de utilisateur.");
+        }
+        if (empty($password)) {
+            array_push($error_msg, "Veuillez inserer le mot de passe.");
+        }
+        if (empty($password)) {
+            array_push($error_msg, "Veuillez inserer le mot de passe pour confirmer.");
         }
 
-        $this->render($response, 'pages/register.twig', "error");
+        if ($password != $password2) {
+            array_push($error_msg, "Mot de passe ne correspond pas. Veuillez reinserer le mot de passe.");
+        }
+
+        if (empty($error_msg)) {
+            $this->container->userService->createUser($user_name, $password);
+            $this->render($response, 'pages/login.twig');
+        } else {
+            $this->render($response, 'pages/register.twig', ['error' => $error_msg]);
+        }
     }
 
     public function login($request, $response, $args) {

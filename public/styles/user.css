@@ -2,17 +2,22 @@
     padding: 2rem;
 }
 
-.user input {
-    display: -webkit-flex;
-    display: flex;
+.user p {
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+.user .input-box {
     padding: 1px 6px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #c9c9c9;
+    display: -webkit-flex;
+    display: flex;
 }
 
-.login_button {
+.user button {
     background-color: #ff99bb;
     color: white;
 }
