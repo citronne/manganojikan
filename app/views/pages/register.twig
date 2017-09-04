@@ -13,7 +13,7 @@
     </div>
     <div class="user">
         <p>Créer un compte</p>
-        <form action="/register" method="post">
+        <form action="{{ path_for('register') }}" method="post">
             <label for="id">Utilisateur</label><br/>
             <input type="text" class="input-box" id="user_name" name="user_name"/><br/>
             <label for="password">Mot de passe</label><br/>

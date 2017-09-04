@@ -30,8 +30,8 @@ nav .menu-search {
     overflow: hidden;
 }
 
-nav .menu-search i {
-    color: darkslategray;
+nav .menu-search .fa-search {
+    color: gray;
 }
 
 nav ul {

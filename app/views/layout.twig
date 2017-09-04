@@ -16,10 +16,14 @@
 <body>
 <nav>
     <div class="menu">
-        <div class="home-btn"><a href="{{ path_for('homepage')}}"><i class="fa fa-home" aria-hidden="true"></i></a></div>
-        <div class="user-icon">
-            <a href="{{ path_for('register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
-            <a href="{{ path_for('login')}}"><i class="fa fa-user" aria-hidden="true"></i></a>
+        <div class="home-btn library-icon"><a href="{{ path_for('homepage')}}"><i class="fa fa-home" aria-hidden="true"></i></a></div>
+        <div class="user-icon library-icon">
+            {% if session.user_name %}
+                <a href="{{ path_for('profile')}}"><i class="fa fa-user" aria-hidden="true"></i></a>
+            {% else %}
+                <a href="{{ path_for('register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                <a href="{{ path_for('login')}}"><i class="fa fa-user" aria-hidden="true"></i></a>
+            {% endif %}
         </div>
         {% block customMenu %}{% endblock %}
         <div class="menu-search">
@@ -28,7 +32,7 @@
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </span>
         </div>
-        <div><a href="{{ path_for('setting')}}"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
+        <div class="setting-icon"><a href="{{ path_for('setting')}}"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
     </div>
 </nav>
 

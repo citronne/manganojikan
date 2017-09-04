@@ -19,4 +19,9 @@ $app = new \Slim\App([
 require 'container.php';
 require 'routing.php';
 
+$twig = $app->getContainer()->view-> getEnvironment();
+$twig->addGlobal("session", $_SESSION);
+
 $app->run();
+
+

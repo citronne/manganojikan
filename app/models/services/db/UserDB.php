@@ -28,5 +28,14 @@ class UserDB {
         mysqli_close($link);
         return $row;
     }
-    
+
+    public static function selectUser($user_name) {
+        $link = BaseDB::connect();
+        $user_name = mysqli_real_escape_string($link, $user_name);
+        $sql = "SELECT user_name, password FROM user WHERE user_name = '$user_name'";
+        $res = mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
+        $row = mysqli_fetch_assoc($res);
+        mysqli_close($link);
+        return $row;
+    }
 }

@@ -1,6 +1,10 @@
 @CHARSET "UTF-8";
-.menu .fa-home {
-    color: navy;
+nav .menu .library-icon i{
+    color: midnightblue;
+}
+
+nav .menu .user-icon .fa-user-plus {
+    display: none;
 }
 
 .liste-mangas {

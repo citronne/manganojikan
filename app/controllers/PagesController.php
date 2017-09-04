@@ -16,13 +16,19 @@ class PagesController extends Controller
 {
 
     public function home($request, $response, $args) {
-        $mangas = $this->container->library->getMangas();
-        //var_dump($mangas);
-        //file_put_contents('php://stderr', print_r($mangas, TRUE));
-        $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
+        if (isset($_SESSION["user_name"])) {
+            $mangas = $this->container->library->getMangas();
+            $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
+        } else {
+            $this->render($response, 'pages/homepage.twig');
+        }
+
     }
 
     public function manga($request, $response, $args) {
+        if (!isset($_SESSION["user_name"])){
+            return $this->redirect($response, 'login');
+        }
         $mangas = $this->container->library->getMangas();
         $manga_name = $args["name"];
         $manga = $mangas[$manga_name];
@@ -30,6 +36,9 @@ class PagesController extends Controller
     }
 
     public function reader($request, $response, $args) {
+        if (!isset($_SESSION["user_name"])){
+            return $this->redirect($response, 'login');
+        }
         $mangas = $this->container->library->getMangas();
         $manga_name = $args["name"];
         $manga = $mangas[$manga_name];
@@ -45,9 +54,9 @@ class PagesController extends Controller
         $user_name = $_POST["user_name"];
         $password = $_POST["password"];
         $password2 = $_POST["password2"];
-        $row = $this->container->userService->verify($user_name);
+        $isUserFree = $this->container->userService->verify($user_name);
         
-        if (!empty($row)){
+        if (!$isUserFree){
             array_push($error_msg, "Nom de utilisateur déjà existe. Veuillez changez le nom.");
         }
         if (empty($user_name)) {
@@ -66,28 +75,58 @@ class PagesController extends Controller
 
         if (empty($error_msg)) {
             $this->container->userService->createUser($user_name, $password);
-            $this->render($response, 'pages/login.twig');
+            $_SESSION['registerMessage'] = "Merci d'avoir créer votre compte!";
+            return $this->redirect($response, 'login');
         } else {
             $this->render($response, 'pages/register.twig', ['error' => $error_msg]);
         }
     }
 
     public function login($request, $response, $args) {
-        $this->render($response, 'pages/login.twig');
+
+        if (isset($_SESSION['registerMessage'])) {
+            $this->render($response, 'pages/login.twig', ['msg' => $_SESSION['registerMessage']]);
+            unset($_SESSION['registerMessage']);
+        } else {
+            $this->render($response, 'pages/login.twig');
+        }
     }
 
     public function identify($request, $response, $args) {
-        $id = $_POST["id"];
+        $user_name = $_POST["id"];
         $password = $_POST["password"];
+        $user = $this->container->userService->identify($user_name, $password);
+        if($user == null) {
+            return $this->render($response, 'pages/login.twig', ['msg' => "Le nom de utilisateur ou le mot de passe est invalide. Veuilllez reinserer."]);
+        } else {
+            $_SESSION["user_name"] = $user;
+            return $this->redirect($response, 'homepage');
+        }
+    }
 
-        $this->render($response, 'pages/login.twig');
+    public function profile($request, $response, $args) {
+        if (!isset($_SESSION["user_name"])){
+            return $this->redirect($response, 'login');
+        }
+        $this->render($response, 'pages/profile.twig');
+    }
+
+    public function logout($request, $response, $args) {
+        unset($_SESSION["user_name"]);
+        return $this->redirect($response, 'homepage');
     }
 
     public function setting($request, $response, $args) {
+        if (!isset($_SESSION["user_name"])){
+            return $this->redirect($response, 'login');
+        }
         $this->render($response, 'pages/setting.twig');
     }
 
     public function sendImage(Request $request, Response $response, $args) {
+        if (!isset($_SESSION["user_name"])){
+            return $this->redirect($response, 'login');
+        }
         header_remove('Cache-Control');
         header_remove('Pragma');
 
@@ -115,6 +154,9 @@ class PagesController extends Controller
     }
 
     public function readerJson(Request $request, Response $response, $args) {
+        if (!isset($_SESSION["user_name"])){
+            return $this->redirect($response, 'login');
+        }
         $manga_name = $args["name"];
         $volume_number = $args["number"];
         $mangas = $this->container->library->getMangas();
@@ -126,6 +168,9 @@ class PagesController extends Controller
     }
 
     public function scan(Request $request, Response $response, $args) {
+        if (!isset($_SESSION["user_name"])){
+            return $this->redirect($response, 'login');
+        }
         $library = $this->container->scanner->scan('D:\\manga');
         $json = json_encode($library);
         unset($_SESSION["library"]);

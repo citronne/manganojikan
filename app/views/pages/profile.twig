@@ -1,0 +1,14 @@
+{% extends "layout.twig" %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="/styles/user.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/styles/login.css" media="screen"/>
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <p>Deconnecter</p>
+        <a href="{{ path_for('logout') }}" class="deconnecter">deconnecter</a>
+    </div>
+{% endblock %}

@@ -3,8 +3,12 @@
     align-items: center;
 }
 
-i {
+nav .menu .user-icon i, .book .fa-book, .noselect .icon{
     color: midnightblue;
+}
+
+nav .menu .user-icon .fa-user-plus {
+    display: none;
 }
 
 nav i.fa {

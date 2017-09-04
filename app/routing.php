@@ -9,8 +9,11 @@ $app->get("/register", \app\controllers\PagesController::class . ':register')->s
 $app->get("/login", \app\controllers\PagesController::class . ':login')->setName('login');
 $app->get("/setting", \app\controllers\PagesController::class . ':setting')->setName('setting');
 $app->get("/scan", \app\controllers\PagesController::class . ':scan')->setName('scan');
+$app->get("/profile", \app\controllers\PagesController::class . ':profile')->setName('profile');
+$app->get("/logout", \app\controllers\PagesController::class . ':logout')->setName('logout');
 
 $app->post("/register", \app\controllers\PagesController::class . ':createNewUser')->setName('register');
+$app->post("/login", \app\controllers\PagesController::class . ':identify')->setName('login');
 
 /*
 $app->get('/contact', \app\controllers\PagesController::class . ':getContact')->setName('contact');

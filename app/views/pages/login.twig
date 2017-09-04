@@ -6,9 +6,12 @@
 {% endblock %}
 
 {% block content %}
+
+    <div>{{ msg }}</div>
+
     <div class="user">
         <p>Connectez-vous</p>
-        <form method="post">
+        <form action="{{ path_for('login') }}" method="post">
             <label for="id">Identifiant</label><br/>
             <input type="text" class="input-box" id="id" name="id"/><br/>
             <label for="password">Mot de passe</label><br/>
@@ -16,4 +19,5 @@
             <button class="input-box">se connecter</button>
         </form>
     </div>
+
 {% endblock %}

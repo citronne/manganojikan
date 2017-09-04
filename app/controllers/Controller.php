@@ -19,6 +19,7 @@ class Controller {
     }
     
     public function redirect($response, $name) {
-        return $response->withStatus(302)->withHeader('Location', $this->router->pathFor($name));
+        $router = $this->container->get('router');
+        return $response->withRedirect($router->pathFor($name));
     }
 }
