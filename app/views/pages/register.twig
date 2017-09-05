@@ -12,15 +12,17 @@
         </ul>
     </div>
     <div class="user">
-        <p>Créer un compte</p>
-        <form action="{{ path_for('register') }}" method="post">
-            <label for="id">Utilisateur</label><br/>
-            <input type="text" class="input-box" id="user_name" name="user_name"/><br/>
-            <label for="password">Mot de passe</label><br/>
-            <input type="password" class="input-box" id="password" name="password"/><br/>
-            <label for="password">Mot de passe (confirmer)</label><br/>
-            <input type="password" class="input-box" id="password2" name="password2"/><br/>
-            <button value="register" class="input-box">s'inscrire</button>
-        </form>
+        <div class="form-box">
+            <p>Créer un compte</p>
+            <form action="{{ path_for('register') }}" method="post">
+                <label for="id">Utilisateur</label><br/>
+                <input type="text" class="input-box" id="user_name" name="user_name"/><br/>
+                <label for="password">Mot de passe</label><br/>
+                <input type="password" class="input-box" id="password" name="password"/><br/>
+                <label for="password">Mot de passe (confirmer)</label><br/>
+                <input type="password" class="input-box" id="password2" name="password2"/><br/>
+                <button value="register" class="input-box">s'inscrire</button>
+            </form>
+        </div>
     </div>
 {% endblock %}

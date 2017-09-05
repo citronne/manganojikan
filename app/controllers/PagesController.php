@@ -175,6 +175,7 @@ class PagesController extends Controller
         $json = json_encode($library);
         unset($_SESSION["library"]);
         return $response->write($json);
+        //['msg' => "Votre bibliothèque a bien été créé."]
     }
 
     /*public function getContact($request, $response, $args) {

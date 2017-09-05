@@ -8,16 +8,17 @@
 {% block content %}
 
     <div>{{ msg }}</div>
-
-    <div class="user">
-        <p>Connectez-vous</p>
-        <form action="{{ path_for('login') }}" method="post">
-            <label for="id">Identifiant</label><br/>
-            <input type="text" class="input-box" id="id" name="id"/><br/>
-            <label for="password">Mot de passe</label><br/>
-            <input type="password" class="input-box" id="password" name="password"/><br/>
-            <button class="input-box">se connecter</button>
-        </form>
+    <div class="form-box">
+        <div class="user">
+            <p>Connectez-vous</p>
+            <form action="{{ path_for('login') }}" method="post">
+                <label for="id">Identifiant</label><br/>
+                <input type="text" class="input-box" id="id" name="id"/><br/>
+                <label for="password">Mot de passe</label><br/>
+                <input type="password" class="input-box" id="password" name="password"/><br/>
+                <button class="input-box">se connecter</button>
+            </form>
+        </div>
     </div>
 
 {% endblock %}

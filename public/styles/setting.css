@@ -3,6 +3,7 @@ nav .menu .setting-icon .fa-cog{
 }
 
 li{
+    line-height: 3rem;
     list-style-type: none;
     font-size: 18pt;
 }

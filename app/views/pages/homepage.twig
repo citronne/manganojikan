@@ -5,12 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <div>
-        <h1>Bienvenue sur Manga no jikan!!</h1>
-        <p>Ce site est déstiné aux personnes qui aiment les mangas.</p>
-        <p>Pour enregistrer</p>
-        <a href=""></a>
-        <p>Pour enregistrer</p>
-        <a></a>
-    </div>
+        <div class="welcome-msg">
+            <h1>Bienvenue sur Manga no jikan!!</h1>
+            <p>Ce site est déstiné aux personnes qui aiment les mangas.</p>
+            <p>Pour enregistrer clickez
+                <a href="{{ path_for('register') }}">ici</a>
+            </p>
+            <p>Pour vous connecter clickez
+                <a href="{{ path_for('login') }}">ici</a>
+            </p>
+        </div>
 {% endblock %}

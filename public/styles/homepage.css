@@ -1,0 +1,11 @@
+.welcome-msg {
+    text-align: center;
+}
+
+p {
+    font-size: 15pt;
+}
+
+.menu .home-btn .fa-home {
+    color: midnightblue;
+}

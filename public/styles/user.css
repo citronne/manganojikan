@@ -1,3 +1,7 @@
+.menu .setting-icon .fa-cog {
+    display: none;
+}
+
 .user {
     padding: 2rem;
 }
@@ -20,4 +24,9 @@
 .user button {
     background-color: #ff99bb;
     color: white;
+}
+
+.form-box {
+    display: table;
+    margin: 0 auto;
 }
