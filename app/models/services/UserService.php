@@ -36,7 +36,8 @@ class UserService {
         return null;
     }
 
-    public function createLibraryForUser($library, $id_user) {
-        BaseDB::saveToDB($library, $id_user);
+    public static function createLibraryForUser($library, $id_user) {
+        $id_library = $library->getId();
+        UserDB::insertIdLibrary($id_user, $id_library);
     }
 }

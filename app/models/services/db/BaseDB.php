@@ -31,11 +31,9 @@ class BaseDB {
         mysqli_close($link);
     }
 
-    public static function saveToDB($library, $id_user){
+    public static function saveToDB($library){
         BaseDB::clearAll();
         LibraryDB::insert($library);
-        $id_library = $library->getId();
-        UserDB::insertIdLibrary($id_user, $id_library);
         
         $mangas = $library->getMangas();
         foreach ($mangas as $manga_name => $manga) {
@@ -47,7 +45,7 @@ class BaseDB {
         }
 
     }
-
+    
     public static function loadDB($id_user) {
         $mangas = array();
 

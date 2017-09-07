@@ -17,10 +17,11 @@ class PagesController extends Controller
 
     public function home($request, $response, $args) {
         if (isset($_SESSION["user"])) {
-            if (!isset($library)) {
+            $library = $this->container->library;
+            if (empty($library)) {
                 $this->render($response, 'pages/setting.twig');
             } else {
-                $mangas = $this->container->library->getMangas();
+                $mangas = $library->getMangas();
                 $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
             }
         } else {
@@ -118,7 +119,7 @@ class PagesController extends Controller
     }
 
     public function logout($request, $response, $args) {
-        unset($_SESSION["user"]);
+        session_unset();
         return $this->redirect($response, 'homepage');
     }
 
@@ -127,6 +128,11 @@ class PagesController extends Controller
             return $this->redirect($response, 'login');
         }
         $this->render($response, 'pages/setting.twig');
+    }
+
+    public function file($request, $response, $args) {
+
+        $this->render($response, 'pages/file_manager.twig');
     }
 
     public function sendImage(Request $request, Response $response, $args) {
@@ -173,15 +179,24 @@ class PagesController extends Controller
         return $response->write($json);
     }
 
+    public function selectDirectory(Request $request, Response $response, $args) {
+        if (!isset($_SESSION["user"])){
+            return $this->redirect($response, 'login');
+        }
+        $directory = $_POST["directory"];
+
+    }
+
     public function scan(Request $request, Response $response, $args) {
         if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
         $user = $_SESSION["user"];
-        $user_id = $user->getId();
-        $library = $this->container->scanner->scan('D:\\manga', $user_id);
+        $id_user = $user->getId();
+        $library = $this->container->scanner->scan('D:\\manga');
+        $this->container->userService->createLibraryForUser($library, $id_user);
         unset($_SESSION["library"]);
-        return $this->redirect($response, 'homepage', ['mangas' => $library]);
+        return $this->redirect($response, 'homepage');
     }
 
     /*public function getContact($request, $response, $args) {

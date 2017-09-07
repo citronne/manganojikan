@@ -29,7 +29,8 @@ $container['library'] = function ($container) {
     if (!isset($_SESSION["library"])) {
         $library_service = new \app\models\services\LibraryService();
         $user = $_SESSION["user"];
-        $library = $library_service->loadLibrary($user->getId());
+        $id_user = $user->getId();
+        $library = $library_service->loadLibrary($id_user);
         $_SESSION["library"] = $library;
     } else {
         $library = $_SESSION["library"];

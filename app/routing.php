@@ -14,6 +14,7 @@ $app->get("/logout", \app\controllers\PagesController::class . ':logout')->setNa
 
 $app->post("/register", \app\controllers\PagesController::class . ':createNewUser')->setName('register');
 $app->post("/login", \app\controllers\PagesController::class . ':identify')->setName('login');
+$app->post("/setting", \app\controllers\PagesController::class . ':selectDirectory')->setName('setting');
 
 /*
 $app->get('/contact', \app\controllers\PagesController::class . ':getContact')->setName('contact');

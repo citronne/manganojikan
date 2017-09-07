@@ -11,9 +11,12 @@
                 <li>Créer la bibliothèque
                     <a href="{{ path_for('scan') }}"> <i class="fa fa-plus-square" aria-hidden="true"></i></a>
                 </li>
-                <li>Choisir le dossier
+                <li>Inserez le nom de dossier
                     <i class="fa fa-folder-open" aria-hidden="true"></i>
-                    <input type="file" id="directory" name="directory" webkitdirectory directory multiple/>
+                    <form action="{{ path_for('setting') }}" method="post">
+                        <input type="text" id="directory" name="directory"/>
+                        <button>Valider</button>
+                    </form>
                 </li>
             {% endif %}
             <li>Rafraichir la bibliothèque
