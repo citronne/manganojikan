@@ -5,14 +5,25 @@
 {% endblock %}
 
 {% block content %}
-<div id="setting">
-    <ul>
-        <li>Ajoutez une bibliothèque
-            <a href="{{ path_for('scan') }}"> <i class="fa fa-plus-square" aria-hidden="true"></i></a>
-        </li>
-        <li>Rafraichir la bibliothèque
-            <a href="{{ path_for('scan') }}"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-        </li>
-    </ul>
-</div>
+    <div class="setting">
+        <ul>
+            {% if not mangas %}
+                <li>Créer la bibliothèque
+                    <a href="{{ path_for('scan') }}"> <i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                </li>
+                <li>Choisir le dossier
+                    <i class="fa fa-folder-open" aria-hidden="true"></i>
+                    <input type="file" id="directory" name="directory" webkitdirectory directory multiple/>
+                </li>
+            {% endif %}
+            <li>Rafraichir la bibliothèque
+                <a href="{{ path_for('scan') }}"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src='/vendor/jquery/jquery-3.2.1.min.js'></script>
+    <script type="text/javascript" src='/scripts/setting.js'></script>
 {% endblock %}

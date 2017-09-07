@@ -8,7 +8,7 @@ namespace app\models\services;
  * Time: 19:53
  */
 class LibraryService{
-    public function loadLibrary() {
-        return \app\models\services\db\BaseDB::loadDB();
+    public function loadLibrary($id_user) {
+        return \app\models\services\db\BaseDB::loadDB($id_user);
     }
 }

@@ -11,6 +11,9 @@
 
 
     <div class="container">
+        {% if not mangas %}
+            <p>Ajouter une bibliothèque <a href="{{ path_for('scan') }}"><i class="fa fa-plus-square" aria-hidden="true"></i></a> </p>
+        {% endif %}
         <div class="mangas">
             <ul class="liste-mangas">
                 {% for manga in mangas %}

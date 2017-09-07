@@ -8,7 +8,7 @@ use app\models\data\Volume;
 use app\models\services\db\BaseDB;
 
 class ScannerService {
-    public function scan($library_path) {
+    public function scan($library_path, $id_user) {
         $library = new Library($library_path);
         $files = scandir($library_path); //scanner des dossiers(et fichiers) et envoie un array
 
@@ -52,11 +52,8 @@ class ScannerService {
     
             }
         }
-        
-        BaseDB::saveToDB($library);
-    
+        BaseDB::saveToDB($library, $id_user);
         return $library;
     }
 
-    
 }

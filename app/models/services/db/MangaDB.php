@@ -21,13 +21,14 @@ class MangaDB {
         mysqli_close($link);
     }
 
-    public static function select($cb) {
+    public static function select($id_library, $cb) {
         $link = BaseDB::connect();
-        $sql = "SELECT * FROM manga";
+        $sql = "SELECT * FROM manga WHERE id_library = $id_library";
+        var_dump($sql);
         $res = mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
         while ($row = mysqli_fetch_assoc($res)) {
             $cb($row);
-        };
+        }
         mysqli_close($link);
     }
 }

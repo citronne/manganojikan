@@ -16,9 +16,13 @@ class PagesController extends Controller
 {
 
     public function home($request, $response, $args) {
-        if (isset($_SESSION["user_name"])) {
-            $mangas = $this->container->library->getMangas();
-            $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
+        if (isset($_SESSION["user"])) {
+            if (!isset($library)) {
+                $this->render($response, 'pages/setting.twig');
+            } else {
+                $mangas = $this->container->library->getMangas();
+                $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
+            }
         } else {
             $this->render($response, 'pages/homepage.twig');
         }
@@ -26,7 +30,7 @@ class PagesController extends Controller
     }
 
     public function manga($request, $response, $args) {
-        if (!isset($_SESSION["user_name"])){
+        if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
         $mangas = $this->container->library->getMangas();
@@ -36,7 +40,7 @@ class PagesController extends Controller
     }
 
     public function reader($request, $response, $args) {
-        if (!isset($_SESSION["user_name"])){
+        if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
         $mangas = $this->container->library->getMangas();
@@ -99,32 +103,34 @@ class PagesController extends Controller
         if($user == null) {
             return $this->render($response, 'pages/login.twig', ['msg' => "Le nom de utilisateur ou le mot de passe est invalide. Veuilllez reinserer."]);
         } else {
-            $_SESSION["user_name"] = $user;
+            $_SESSION["user"] = $user;
             return $this->redirect($response, 'homepage');
         }
     }
 
     public function profile($request, $response, $args) {
-        if (!isset($_SESSION["user_name"])){
+        if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
-        $this->render($response, 'pages/profile.twig');
+        $user = $_SESSION["user"];
+        $user_name = $user->getUserName();
+        $this->render($response, 'pages/profile.twig', ['user' => $user_name]);
     }
 
     public function logout($request, $response, $args) {
-        unset($_SESSION["user_name"]);
+        unset($_SESSION["user"]);
         return $this->redirect($response, 'homepage');
     }
 
     public function setting($request, $response, $args) {
-        if (!isset($_SESSION["user_name"])){
+        if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
         $this->render($response, 'pages/setting.twig');
     }
 
     public function sendImage(Request $request, Response $response, $args) {
-        if (!isset($_SESSION["user_name"])){
+        if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
         header_remove('Cache-Control');
@@ -154,7 +160,7 @@ class PagesController extends Controller
     }
 
     public function readerJson(Request $request, Response $response, $args) {
-        if (!isset($_SESSION["user_name"])){
+        if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
         $manga_name = $args["name"];
@@ -168,14 +174,14 @@ class PagesController extends Controller
     }
 
     public function scan(Request $request, Response $response, $args) {
-        if (!isset($_SESSION["user_name"])){
+        if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
-        $library = $this->container->scanner->scan('D:\\manga');
-        $json = json_encode($library);
+        $user = $_SESSION["user"];
+        $user_id = $user->getId();
+        $library = $this->container->scanner->scan('D:\\manga', $user_id);
         unset($_SESSION["library"]);
-        return $response->write($json);
-        //['msg' => "Votre bibliothèque a bien été créé."]
+        return $this->redirect($response, 'homepage', ['mangas' => $library]);
     }
 
     /*public function getContact($request, $response, $args) {

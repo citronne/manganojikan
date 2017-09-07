@@ -2,6 +2,7 @@
 
 namespace app\models\services;
 
+use app\models\data\User;
 use app\models\services\db\UserDB;
 use app\models\services\db\BaseDB;
 use Twig\Cache\NullCache;
@@ -27,10 +28,15 @@ class UserService {
         if (!empty($row)) {
             $pass = $row["password"];
             if (password_verify($password, $pass)) {
-                return $row["user_name"];
+                $id = $row["id"];
+                $user = new User($user_name, $id);
+                return $user;
             }
         }
         return null;
     }
-    
+
+    public function createLibraryForUser($library, $id_user) {
+        BaseDB::saveToDB($library, $id_user);
+    }
 }

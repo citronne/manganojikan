@@ -1,13 +1,19 @@
-.user {
-    padding: 2rem;
-}
-
-.user p {
+.profile-box p {
     font-weight: bold;
     font-size: 16pt;
 }
 
-.user .input-box {
+.profile-box {
+    display: table;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.setting i {
+    display: inline-block;
+}
+
+.logout {
     padding: 1px 6px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -15,14 +21,12 @@
     border: 1px solid #c9c9c9;
     display: -webkit-flex;
     display: flex;
-}
-
-.user button {
     background-color: #ff99bb;
     color: white;
+    width: 5.7rem;
+    text-decoration: none;
 }
 
-.form-box {
-    display: table;
-    margin: 0 auto;
+.menu .user-icon i {
+    color: midnightblue;
 }

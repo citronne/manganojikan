@@ -1,4 +1,4 @@
-nav .menu .setting-icon .fa-cog{
+nav .menu .setting-icon .fa-cog, nav .menu .user-icon .fa {
     color: midnightblue;
 }
 
@@ -8,6 +8,10 @@ li{
     font-size: 18pt;
 }
 
-.fa{
-    color: midnightblue;
+.setting {
+    text-align: center;
+}
+
+#text {
+    display: none;
 }

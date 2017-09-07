@@ -1,4 +1,4 @@
-.welcome-msg {
+.welcome-board {
     text-align: center;
 }
 
@@ -8,4 +8,19 @@ p {
 
 .menu .home-btn .fa-home {
     color: midnightblue;
+}
+
+.welcome-msg .log-box a {
+    padding: 1px 6px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border: 1px solid #c9c9c9;
+    display: -webkit-flex;
+    display: flex;
+    background-color: #ff99bb;
+    color: white;
+    width: 2.1rem;
+    text-decoration: none;
+    display: inline-block;
 }

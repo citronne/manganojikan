@@ -1,14 +1,20 @@
 {% extends "layout.twig" %}
 
 {% block styles %}
-    <link rel="stylesheet" type="text/css" href="/styles/user.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/styles/login.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/styles/profile.css" media="screen"/>
 {% endblock %}
 
 {% block content %}
-
-    <div>
-        <p>Deconnecter</p>
-        <a href="{{ path_for('logout') }}" class="deconnecter">deconnecter</a>
+    <div class="profile-box">
+        <p> Bonjour {{ user }} !!</p>
+        <div class="setting">
+            <p>Configurer votre bibliothéque
+                <a href="{{ path_for('setting') }}" ><i class="fa fa-cogs" aria-hidden="true"></i></a>
+            </p>
+        </div>
+        <div class="logout-box">
+            <p>Déconnecter</p>
+            <a href="{{ path_for('logout') }}" class="logout">déconnecter</a>
+        </div>
     </div>
 {% endblock %}

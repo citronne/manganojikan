@@ -18,7 +18,7 @@
     <div class="menu">
         <div class="home-btn library-icon"><a href="{{ path_for('homepage')}}"><i class="fa fa-home" aria-hidden="true"></i></a></div>
         <div class="user-icon library-icon">
-            {% if session.user_name %}
+            {% if session.user %}
                 <a href="{{ path_for('profile')}}"><i class="fa fa-user" aria-hidden="true"></i></a>
             {% else %}
                 <a href="{{ path_for('register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
@@ -32,7 +32,9 @@
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </span>
         </div>
-        <div class="setting-icon"><a href="{{ path_for('setting')}}"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
+        {% if session.user %}
+            <div class="setting-icon"><a href="{{ path_for('setting')}}"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
+        {% endif %}
     </div>
 </nav>
 

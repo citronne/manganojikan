@@ -14,9 +14,9 @@ class User {
     private $user_name;
     private $library;
     
-    public function __construct($user_name, $library) {
+    public function __construct($user_name, $id) {
         $this->user_name = $user_name;
-        $this->library = $library;
+        $this->id = $id;
     }
     
     public function setId($id) {

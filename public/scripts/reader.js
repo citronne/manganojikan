@@ -20,11 +20,11 @@ $(document).ready(function() {
 
         var position_offset = $(this).offset();
 
-        var positon = event.pageX;
+        var position = event.pageX;
 
         var width = $(this).width();
 
-        if(positon < position_offset.left + width/2) {
+        if(position < position_offset.left + width/2) {
             changePage(true);
         } else {
             changePage(false);

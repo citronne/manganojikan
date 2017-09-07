@@ -24,9 +24,9 @@ class VolumeDB {
         mysqli_close($link);
     }
 
-    public static function select($cb) {
+    public static function select($id_library, $cb) {
         $link = BaseDB::connect();
-        $sql = "SELECT * FROM volume";
+        $sql = "SELECT * FROM `manga` m INNER JOIN volume v ON m.id = v.id_manga WHERE id_library = $id_library";
         $res = mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
         while ($row = mysqli_fetch_assoc($res)) {
             $cb($row);

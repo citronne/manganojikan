@@ -4,6 +4,8 @@ namespace app\models\services\db;
 use app\models\data\Library;
 use app\models\data\Manga;
 use app\models\data\Volume;
+use app\models\data\User;
+use app\models\services\UserService;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,10 +31,12 @@ class BaseDB {
         mysqli_close($link);
     }
 
-    public static function saveToDB($library){
+    public static function saveToDB($library, $id_user){
         BaseDB::clearAll();
         LibraryDB::insert($library);
-
+        $id_library = $library->getId();
+        UserDB::insertIdLibrary($id_user, $id_library);
+        
         $mangas = $library->getMangas();
         foreach ($mangas as $manga_name => $manga) {
             MangaDB::insert($library, $manga);
@@ -43,31 +47,31 @@ class BaseDB {
         }
 
     }
-    
-    public static function loadDB() {
 
-        $libraries = array();
+    public static function loadDB($id_user) {
         $mangas = array();
 
-        LibraryDB::select(function ($row) use (&$libraries) {
-            $id = $row["id"];
-            $path = $row["path"];
-            $library = new Library($path, $id);
-            $libraries[$id] = $library;
-        });
+        $row = LibraryDB::selectByUserId($id_user);
+        if (empty($row)){
+            return null;
+        }
 
-        MangaDB::select(function ($row) use (&$libraries, &$mangas) {
+        var_dump($row);
+        $id_library = $row["id"];
+        $path = $row["path"];
+        $library = new Library($path, $id_library);
+
+        MangaDB::select($id_library, function ($row) use (&$library, &$mangas) {
             $id = $row["id"];
-            $id_library = $row["id_library"];
             $name = $row["name"];
             $manga = new Manga($name, $id);
-            $current_library = $libraries[$id_library];
-            $current_library->addManga($manga);
+            var_dump($manga);
+            $library->addManga($manga);
             $mangas[$id] = $manga;
         });
 
 
-        VolumeDB::select(function ($row) use (&$mangas) {
+        VolumeDB::select($id_library, function ($row) use (&$mangas) {
             $id = $row["id"];
             $id_manga = $row["id_manga"];
             $volume_number = $row["volume_number"];
@@ -83,7 +87,6 @@ class BaseDB {
             $current_manga->addVolume($volume);
         });
 
-        
-        return array_values($libraries)[0];
+        return $library;
     }
 }
