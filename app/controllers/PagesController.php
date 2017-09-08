@@ -70,7 +70,7 @@ class PagesController extends Controller
         if (empty($password)) {
             array_push($error_msg, "Veuillez inserer le mot de passe.");
         }
-        if (empty($password)) {
+        if (empty($password2)) {
             array_push($error_msg, "Veuillez inserer le mot de passe pour confirmer.");
         }
 
@@ -130,11 +130,6 @@ class PagesController extends Controller
         $this->render($response, 'pages/setting.twig');
     }
 
-    public function file($request, $response, $args) {
-
-        $this->render($response, 'pages/file_manager.twig');
-    }
-
     public function sendImage(Request $request, Response $response, $args) {
         if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
@@ -184,28 +179,27 @@ class PagesController extends Controller
             return $this->redirect($response, 'login');
         }
         $directory = $_POST["directory"];
+        $this->scanLibrary($directory);
+        return $this->redirect($response, 'homepage');
 
     }
 
-    public function scan(Request $request, Response $response, $args) {
+    public function refreshLibrary(Request $request, Response $response, $args) {
         if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
-        $user = $_SESSION["user"];
-        $id_user = $user->getId();
-        $library = $this->container->scanner->scan('D:\\manga');
-        $this->container->userService->createLibraryForUser($library, $id_user);
+        $path = $this->container->library->getPath();
+        $this->container->scanner->scan($path);
         unset($_SESSION["library"]);
         return $this->redirect($response, 'homepage');
     }
 
-    /*public function getContact($request, $response, $args) {
-        $this->render($response, 'pages/contact.twig');
+    private function scanLibrary($directory) {
+        $library = $this->container->scanner->scan($directory);
+        $user = $_SESSION["user"];
+        $id_user = $user->getId();
+        $this->container->userService->assignLibraryForUser($library, $id_user);
+        unset($_SESSION["library"]);
     }
 
-    public function postContact($request, $response, $args) {
-        $_SESSION['flash'];
-        return $this->redirect  ($response,'contact');
-    }
-    */
 }

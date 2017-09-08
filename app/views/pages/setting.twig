@@ -8,12 +8,10 @@
     <div class="setting">
         <ul>
             {% if not mangas %}
-                <li>Créer la bibliothèque
-                    <a href="{{ path_for('scan') }}"> <i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                </li>
+                <li>Créer la bibliothèque</li>
                 <li>Inserez le nom de dossier
-                    <i class="fa fa-folder-open" aria-hidden="true"></i>
                     <form action="{{ path_for('setting') }}" method="post">
+                        <i class="fa fa-folder-open" aria-hidden="true"></i>
                         <input type="text" id="directory" name="directory"/>
                         <button>Valider</button>
                     </form>

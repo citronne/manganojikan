@@ -32,7 +32,6 @@ class BaseDB {
     }
 
     public static function saveToDB($library){
-        BaseDB::clearAll();
         LibraryDB::insert($library);
         
         $mangas = $library->getMangas();
@@ -40,7 +39,7 @@ class BaseDB {
             MangaDB::insert($library, $manga);
             $volumes = $manga->getVolumes();
             foreach ($volumes as $volume_number => $volume) {
-                VolumeDB::insert($manga, $volume);
+                VolumeDB::insert($library, $manga, $volume);
             }
         }
 

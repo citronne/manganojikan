@@ -15,9 +15,17 @@ class MangaDB {
         $link = BaseDB::connect();
         $library_id = $library->getId();
         $name = mysqli_real_escape_string($link, $manga->getName());
-        $sql = "INSERT INTO manga(id, id_library, name) VALUES (NULL, '$library_id', '$name')" ;
-        mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
-        $manga->setId(mysqli_insert_id($link));
+        $sql = "SELECT id FROM manga WHERE name = '$name' AND id_library = $library_id";
+        $res = mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
+        $row = mysqli_fetch_assoc($res);
+        if (empty($row)) {
+            $sql = "INSERT INTO manga(id, id_library, name) VALUES (NULL, '$library_id', '$name')" ;
+            mysqli_query($link, $sql) or die("Invalid query") . mysqli_error($link);
+            $manga->setId(mysqli_insert_id($link));
+        } else {
+            $manga->setId($row["id"]);
+
+        }
         mysqli_close($link);
     }
 
@@ -30,5 +38,9 @@ class MangaDB {
             $cb($row);
         }
         mysqli_close($link);
+    }
+
+    public static function toDelete($library) {
+
     }
 }

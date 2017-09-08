@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `manga` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `id_library` int(11) NOT NULL ,
   `name` varchar(255) NOT NULL,
+  `to_delete` tinyint(1),
   FOREIGN KEY (`id_library`) REFERENCES `library` (`id`)
 );
 
@@ -21,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `volume` (
   `read_status` tinyint(1) NOT NULL,
   `page_number` int(11) NOT NULL,
   `file_names` LONGTEXT NOT NULL,
+  `to_delete` tinyint(1),
   FOREIGN KEY (`id_manga`) REFERENCES `manga` (`id`)
 );
 

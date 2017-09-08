@@ -54,6 +54,7 @@ class ScannerService {
         }
 
         BaseDB::saveToDB($library);
+        
         return $library;
 
     }

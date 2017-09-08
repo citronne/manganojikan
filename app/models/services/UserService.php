@@ -36,7 +36,7 @@ class UserService {
         return null;
     }
 
-    public static function createLibraryForUser($library, $id_user) {
+    public static function assignLibraryForUser($library, $id_user) {
         $id_library = $library->getId();
         UserDB::insertIdLibrary($id_user, $id_library);
     }
