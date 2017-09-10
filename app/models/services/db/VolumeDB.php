@@ -59,10 +59,15 @@ class VolumeDB {
         $link = BaseDB::connect();
         $id_library = $library->getId();
         $sql = "DELETE volume FROM volume INNER JOIN manga ON manga.id = volume.id_manga WHERE manga.id_library = $id_library AND volume.to_delete = 1";
-        phpinfo();
-        var_dump($sql);
         mysqli_query($link, $sql) or die(mysqli_error($link));
         mysqli_close($link);
     }
-
+    
+    public static function updatePageNumber($page_number, $volume) {
+        $link = BaseDB::connect();
+        $id_volume = $volume->getId();
+        $sql = "UPDATE volume SET page_number = $page_number WHERE id = $id_volume";
+        mysqli_query($link, $sql) or die(mysqli_error($link));
+        mysqli_close($link);
+    }
 }

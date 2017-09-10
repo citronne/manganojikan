@@ -7,7 +7,7 @@
 {% block content %}
     <div class="setting">
         <ul>
-            {% if not mangas %}
+            {% if not library %}
                 <li>Créer la bibliothèque</li>
                 <li>Inserez le nom de dossier
                     <form action="{{ path_for('setting') }}" method="post">
@@ -17,9 +17,11 @@
                     </form>
                 </li>
             {% endif %}
+            {% if library %}
             <li>Rafraichir la bibliothèque
                 <a href="{{ path_for('scan') }}"><i class="fa fa-refresh" aria-hidden="true"></i></a>
             </li>
+            {% endif %}
         </ul>
     </div>
 {% endblock %}

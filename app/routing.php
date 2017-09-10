@@ -16,7 +16,4 @@ $app->post("/register", \app\controllers\PagesController::class . ':createNewUse
 $app->post("/login", \app\controllers\PagesController::class . ':identify')->setName('login');
 $app->post("/setting", \app\controllers\PagesController::class . ':selectDirectory')->setName('setting');
 
-/*
-$app->get('/contact', \app\controllers\PagesController::class . ':getContact')->setName('contact');
-$app->post('/contact', \app\controllers\PagesController::class . ':postContact');
-*/
+$app->put("/manga/{name}/volume/{number}", \app\controllers\PagesController::class . ':updateVolume');

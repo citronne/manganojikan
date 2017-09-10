@@ -58,7 +58,6 @@ class BaseDB {
             return null;
         }
 
-       // var_dump($row);
         $id_library = $row["id"];
         $path = $row["path"];
         $library = new Library($path, $id_library);
@@ -67,7 +66,6 @@ class BaseDB {
             $id = $row["id"];
             $name = $row["name"];
             $manga = new Manga($name, $id);
-            //var_dump($manga);
             $library->addManga($manga);
             $mangas[$id] = $manga;
         });
@@ -81,11 +79,13 @@ class BaseDB {
             $add_date = $row["add_date"];
             $access_date = $row["access_date"];
             $read_status = $row["read_status"];
+            $page_number = $row["page_number"];
             $current_manga = $mangas[$id_manga];
             $file_names = explode(",", $row["file_names"]);
             $cover = '/manga/' . $current_manga->getName() . '/volume/' . $volume_number . '/' . $file_names[0];
             $volume = new Volume($volume_number, $path, $cover, $file_names);
-            
+            $volume->setId($id);
+            $volume->setPageNumber($page_number);
             $current_manga->addVolume($volume);
         });
 

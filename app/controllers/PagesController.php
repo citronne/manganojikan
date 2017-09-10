@@ -127,7 +127,8 @@ class PagesController extends Controller
         if (!isset($_SESSION["user"])){
             return $this->redirect($response, 'login');
         }
-        $this->render($response, 'pages/setting.twig');
+        $library = $this->container->library;
+        $this->render($response, 'pages/setting.twig', ['library' => $library]);
     }
 
     public function sendImage(Request $request, Response $response, $args) {
@@ -202,4 +203,16 @@ class PagesController extends Controller
         unset($_SESSION["library"]);
     }
 
+    public function updateVolume(Request $request, Response $response, $args) {
+        $library = $_SESSION["library"];
+        $manga_name = $args["name"];
+        $volume_number = $args["number"];
+        $allPutVars = $request->getParsedBody();
+        $pageNumber = $allPutVars["pageNumber"];
+        
+        $manga = $library->getManga($manga_name);
+        $volume = $manga->getVolume($volume_number);
+        $volume->setPageNumber($pageNumber);
+        $this->container->libraryService->updatePageNumber($pageNumber, $volume);
+    }
 }

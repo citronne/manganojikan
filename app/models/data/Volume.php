@@ -25,8 +25,16 @@ class Volume implements \JsonSerializable {
         $this->file_names = $file_names;
     }
 
+    public function getId() {
+        return $this->id;
+    }
+    
     public function setId($id) {
         $this->id = $id;
+    }
+
+    public function setPageNumber($page_number) {
+        $this->page_number = $page_number;
     }
 
     public function getPath() {

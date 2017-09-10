@@ -2,8 +2,8 @@
     text-align: center;
 }
 
-p {
-    font-size: 15pt;
+.welcome-msg p {
+    font-size: 15px;
 }
 
 .menu .home-btn .fa-home {
@@ -23,4 +23,8 @@ p {
     width: 2.1rem;
     text-decoration: none;
     display: inline-block;
+}
+
+.welcome-msg img {
+    width: 100%;
 }
