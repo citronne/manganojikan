@@ -34,6 +34,10 @@ class BaseDB {
     public static function saveToDB($library){
         LibraryDB::insert($library);
         
+        MangaDB::markToDelete($library);
+        VolumeDB::markToDelete($library);
+        //marquer tous a supprimer dans manga et volume
+        
         $mangas = $library->getMangas();
         foreach ($mangas as $manga_name => $manga) {
             MangaDB::insert($library, $manga);
@@ -42,7 +46,8 @@ class BaseDB {
                 VolumeDB::insert($library, $manga, $volume);
             }
         }
-
+        MangaDB::toDelete($library);
+        VolumeDB::toDelete($library);
     }
     
     public static function loadDB($id_user) {
@@ -53,7 +58,7 @@ class BaseDB {
             return null;
         }
 
-        var_dump($row);
+       // var_dump($row);
         $id_library = $row["id"];
         $path = $row["path"];
         $library = new Library($path, $id_library);
@@ -62,7 +67,7 @@ class BaseDB {
             $id = $row["id"];
             $name = $row["name"];
             $manga = new Manga($name, $id);
-            var_dump($manga);
+            //var_dump($manga);
             $library->addManga($manga);
             $mangas[$id] = $manga;
         });

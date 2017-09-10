@@ -13,7 +13,7 @@ class Volume implements \JsonSerializable {
     private $path;
     private $add_date;
     private $access_date;
-    private $read;
+    private $read_status;
     private $page_number;
     private $cover;
     private $file_names;
