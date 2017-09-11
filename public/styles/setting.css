@@ -2,10 +2,10 @@ nav .menu .setting-icon .fa-cog, nav .menu .user-icon .fa {
     color: midnightblue;
 }
 
-li{
+.setting li{
     line-height: 3rem;
     list-style-type: none;
-    font-size: 18pt;
+    font-size: 2rem;
 }
 
 .setting {

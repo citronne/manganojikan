@@ -7,6 +7,10 @@ nav .menu .user-icon .fa-user-plus {
     display: none;
 }
 
+nav i.fa {
+    padding-right: 1rem;
+}
+
 .liste-mangas {
     display: grid;
     padding: 0px;

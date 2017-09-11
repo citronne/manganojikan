@@ -1,12 +1,12 @@
 .profile-box p {
     font-weight: bold;
-    font-size: 16pt;
+    font-size: 1.5rem;
 }
 
 .profile-box {
     display: table;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.2rem;
 }
 
 .setting i {
@@ -23,8 +23,13 @@
     display: flex;
     background-color: #ff99bb;
     color: white;
-    width: 5.7rem;
+    width: 7rem;
     text-decoration: none;
+}
+
+.logout a {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .menu .user-icon i {

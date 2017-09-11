@@ -5,8 +5,10 @@
 {% endblock %}
 
 {% block customMenu %}
-    <div class="book"><a href={{ path_for('manga' ,{ 'name': manga.name}) }}><i class="fa fa-book" aria-hidden="true"></i></a></div>
-    <div class="fullscreenBtn"><i class="fa fa-arrows-alt" aria-hidden="true"></i></div>
+    <div class="container">
+        <div class="fullscreenBtn icon"><i class="fa fa-arrows-alt" aria-hidden="true"></i></div>
+        <div class="book"><a href={{ path_for('manga' ,{ 'name': manga.name}) }}><i class="fa fa-reply" aria-hidden="true"></i></a></div>
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -14,7 +16,6 @@
         <div class="icon_left icon"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></div>
         <div class="current-page">
             <img src="" alt="current page"/>
-            <div class="page_number"></div>
         </div>
         <div class="icon_right icon"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
     </div>
