@@ -91,4 +91,18 @@ class BaseDB {
 
         return $library;
     }
+    
+    public static function searchFor($id_user, $text) {
+        $row = LibraryDB::selectByUserId($id_user);
+        $id_library = $row["id"];
+        $manga_names = MangaDB::selectMangaName($id_library);
+        $founds = array();
+        foreach($manga_names as $manga_name) {
+            $found = strcasecmp($manga_name, $text);
+            if($found == 0) {
+                array_push($founds, $text);
+            }
+        }
+        return $founds;
+    }
 }

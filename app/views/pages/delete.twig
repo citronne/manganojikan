@@ -1,0 +1,13 @@
+{% extends "layout.twig" %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="/styles/delete.css" media="screen"/>
+{% endblock %}
+
+{% block content %}
+    <div class="delete">
+        <p>Etes-vous sûr de supprimer votre compte?</p>
+        <a href="{{ path_for('delete') }}">oui</a>
+        <a href="{{ path_for('profile') }}">non</a>
+    </div>
+{% endblock %}

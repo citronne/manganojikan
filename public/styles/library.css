@@ -11,6 +11,22 @@ nav i.fa {
     padding-right: 1rem;
 }
 
+.container .add {
+    display: table;
+    margin: 0 auto;
+    padding: 1.2rem;
+}
+
+.container .add a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5rem;
+}
+
+.container .add a i {
+    color: midnightblue;
+}
+
 .liste-mangas {
     display: grid;
     padding: 0px;

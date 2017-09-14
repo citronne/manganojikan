@@ -19,7 +19,7 @@ class PagesController extends Controller
         if (isset($_SESSION["user"])) {
             $library = $this->container->library;
             if (empty($library)) {
-                $this->render($response, 'pages/setting.twig');
+                $this->render($response, 'pages/library.twig');
             } else {
                 $mangas = $library->getMangas();
                 $this->render($response, 'pages/library.twig', ['mangas' => $mangas]);
@@ -74,8 +74,8 @@ class PagesController extends Controller
             array_push($error_msg, "Veuillez inserer le mot de passe pour confirmer.");
         }
 
-        if ($password != $password2) {
-            array_push($error_msg, "Mot de passe ne correspond pas. Veuillez reinserer le mot de passe.");
+        if ($password !== $password2) {
+            array_push($error_msg, "Mot de passe ne correspond pas. Veuillez reinserer.");
         }
 
         if (empty($error_msg)) {
@@ -215,4 +215,85 @@ class PagesController extends Controller
         $volume->setPageNumber($pageNumber);
         $this->container->libraryService->updatePageNumber($pageNumber, $volume);
     }
+
+    public function change($request, $response, $args) {
+        if (!isset($_SESSION["user"])){
+            return $this->redirect($response, 'login');
+        }
+        $this->render($response, 'pages/change.twig');
+    }
+
+    public function changePassword($request, $response, $args) {
+        if (!isset($_SESSION["user"])){
+            return $this->redirect($response, 'login');
+        }
+        $error_msg =[];
+        $user = $_SESSION["user"];
+        $oldpassword = $_POST["oldpassword"];
+        $newpassword = $_POST["newpassword"];
+        $newpassword2 = $_POST["newpassword2"];
+        $isCorrectPassword = $this->container->userService->verifyPassword($user, $oldpassword);
+        if(!$isCorrectPassword) {
+            array_push($error_msg, "Le mot de passe est invalide. Veuilllez reinserer.");
+        }
+        if (empty($oldpassword)) {
+            array_push($error_msg, "Veuillez inserer le mot de passe.");
+        }
+        if (empty($newpassword)) {
+            array_push($error_msg, "Veuillez inserer le nouveau mot de passe.");
+        }
+        if (empty($newpassword2)) {
+            array_push($error_msg, "Veuillez inserer le nouveau mot de passe pour confirmer.");
+        }
+        if ($newpassword !== $newpassword2) {
+            array_push($error_msg, "Nouveau mot de passe ne correspond pas. Veuillez reinserer.");
+        }
+
+        if(empty($error_msg)) {
+            $this->container->userService->changePassword($user, $newpassword);
+            return $this->redirect($response, 'profile', ['msg' => "Le mot de passe a bien été changé."]);
+        } else {
+            return $this->render($response, 'pages/change.twig', ['error' => $error_msg]);
+        }
+    }
+    
+    public function verifyToDelete(Request $request, Response $response, $args) {
+        if (!isset($_SESSION["user"])){
+            return $this->redirect($response, 'login', ['msg' => "Suppression de compte a bien été réussite!"]);
+        }
+        $this->render($response, 'pages/delete.twig');
+    }
+    
+    public function deleteAccount(Request $request, Response $response, $args) {
+        $user = $_SESSION["user"];
+        $id_user = $user->getId();
+        $library = $this->container->library;
+        if(empty($library)){
+            $this->container->userService->deleteUser($id_user);
+            session_unset();
+            return $this->redirect($response, 'homepage', ['msg' => "Suppression de compte a bien été réussite!"]);
+        }
+        $id_library = $library->getId();
+        $this->container->userService->deleteAccount($id_user, $id_library);
+        session_unset();
+        return $this->redirect($response, 'homepage', ['msg' => "Suppression de compte a bien été réussite!"]);
+    }
+    
+    /*public function search(Request $request, Response $response, $args) {
+        if (!isset($_SESSION["user"])){
+            return $this->redirect($response, 'login');
+        }
+        $text = $_GET["search"];
+        $user = $_SESSION["user"];
+        $id_user = $user->getId();
+        $founds = $this->container->libraryService->searchMangaName($id_user, $text);
+        if(empty($founds)) {
+            $this->render($response, 'pages/library.twig', ['found' => "Not found"]);
+        } else {
+            foreach ($founds as $found) {
+                $manga = $this->container->library->getManga($found);
+                $this->render($response, 'pages/library.twig', ['found' => $manga]);
+            }
+        }
+    }*/
 }

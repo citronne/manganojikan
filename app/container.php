@@ -39,7 +39,7 @@ $container['library'] = function ($container) {
 };
 
 $container['libraryService'] = function ($container) {
-    return new \app\models\services\LibraryService();;
+    return new \app\models\services\LibraryService();
 };
 
 $container['userService'] = function ($container) {

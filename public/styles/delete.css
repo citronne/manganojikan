@@ -1,0 +1,27 @@
+.user-icon .fa{
+    color: midnightblue;
+}
+
+.delete {
+    text-align: center;
+}
+
+.delete p {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.delete a{
+    padding: 1px 6px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border: 1px solid #c9c9c9;
+    display: -webkit-flex;
+    display: flex;
+    background-color: #ff99bb;
+    color: white;
+    width: 3.1rem;
+    text-decoration: none;
+    display: inline-block;
+}

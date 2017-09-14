@@ -18,8 +18,8 @@ class Controller {
         $this->container->view->render($response, $template, $params);
     }
     
-    public function redirect($response, $name) {
+    public function redirect($response, $name, $params = []) {
         $router = $this->container->get('router');
-        return $response->withRedirect($router->pathFor($name));
+        return $response->withRedirect($router->pathFor($name, $params));
     }
 }

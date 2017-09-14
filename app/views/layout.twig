@@ -7,9 +7,9 @@
     <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="/vendor/normalize/normalize-7.0.0.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="/styles/common.css" media="screen"/>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
 
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/manifest.json">
     {% block styles %}{% endblock %}
 
 </head>
@@ -26,12 +26,7 @@
             {% endif %}
         </div>
         {% block customMenu %}{% endblock %}
-        <div class="menu-search">
-                <span class="search-box">
-                    <input type="search" id="search" placeholder="Search..." />
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </span>
-        </div>
+
         {% if session.user %}
             <div class="setting-icon"><a href="{{ path_for('setting')}}"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
         {% endif %}

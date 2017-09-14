@@ -1,9 +1,9 @@
-.container {
+.reader, .container {
     display: flex;
     align-items: center;
 }
 
-nav .menu .user-icon i, .book .fa-book, .noselect .icon{
+nav .menu .user-icon i, .book .fa-book, .reading .icon{
     color: midnightblue;
 }
 
@@ -15,7 +15,7 @@ nav i.fa {
     padding-right: 1rem;
 }
 
-.noselect .icon {
+.reading .icon {
     height: 85vh;
     flex: 1;
     text-align: center;
@@ -31,7 +31,7 @@ nav i.fa {
 
 @media screen and (max-width: 768px) {
 
-    .container .icon {
+    .reader .icon {
         display: none;
     }
 
@@ -85,9 +85,10 @@ nav i.fa {
 }
 
 .current-page {
-    flex: 1;
+
 }
 
 .current-page img {
     height: 85vh;
+    flex: 1;
 }

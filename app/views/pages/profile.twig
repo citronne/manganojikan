@@ -5,16 +5,26 @@
 {% endblock %}
 
 {% block content %}
+    <p>{{ msg }}</p>
     <div class="profile-box">
         <p> Bonjour {{ user }} !!</p>
         <div class="setting">
-            <p>Configurer votre bibliothéque
-                <a href="{{ path_for('setting') }}" ><i class="fa fa-cogs" aria-hidden="true"></i></a>
-            </p>
-        </div>
-        <div class="logout-box">
-            <p>Déconnecter</p>
-            <a href="{{ path_for('logout') }}" class="logout">déconnecter</a>
+            <ul>
+                <li>
+                    <a href="{{ path_for('setting') }}" class="link">Configurer votre bibliothéque
+                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path_for('change') }}" class="link">Changer le mot de passe</a>
+                </li>
+                <li>
+                    <a href="{{ path_for('todelete') }}" class="link">Supprimer votre compte</a>
+                </li>
+                <li>Déconnecter
+                    <a href="{{ path_for('logout') }}" class="logout">déconnecter</a>
+                </li>
+            </ul>
         </div>
     </div>
 {% endblock %}

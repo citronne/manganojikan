@@ -4,31 +4,42 @@
     <link rel="stylesheet" type="text/css" href="/styles/library.css" media="screen"/>
 {% endblock %}
 
+{% block customMenu %}
+    <!--<div class="menu-search">
+                <span class="search-box">
+                    <input type="search" id="search" placeholder="Search..." />
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </span>
+    </div>-->
+{% endblock %}
 
 {% block content %}
-    {#{{ dump(mangas) }}#}
-
-
-
     <div class="container">
         {% if  mangas is null %}
-            <p>Ajouter une bibliothèque <a href="{{ path_for('scan') }}"><i class="fa fa-plus-square" aria-hidden="true"></i></a> </p>
+            <div class="add">
+                <a href="{{ path_for('setting') }}">Ajouter une bibliothèque
+                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                </a>
+            </div>
         {% endif %}
+
         {% if mangas is not null %}
-        <div class="mangas">
-            <ul class="liste-mangas">
-                {% for manga in mangas %}
+            <div class="mangas">
+                <ul class="liste-mangas">
 
-                <li>
-                    <a href="{{ path_for('manga', { 'name': manga.name }) }}">
-                        <span class="manga-img" style="background-image: url({{ manga.getCover() }})"></span>
-                        <span class="manga-text">{{ manga.name }}</span>
-                    </a>
-                </li>
+                    {% for manga in mangas %}
+                    <li>
+                        <a href="{{ path_for('manga', { 'name': manga.name }) }}">
+                            <span class="manga-img" style="background-image: url({{ manga.getCover() }})"></span>
+                            <span class="manga-text">{{ manga.name }}</span>
+                        </a>
+                    </li>
 
-                {% endfor %}
-            </ul>
-        </div>
+                    {% endfor %}
+
+                </ul>
+            </div>
         {% endif %}
+
     </div>
 {% endblock %}

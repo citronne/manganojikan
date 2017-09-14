@@ -9,21 +9,35 @@
     padding: 1.2rem;
 }
 
-.setting i {
-    display: inline-block;
+.profile-box .setting ul {
+    list-style: none;
+    padding-left: 0;
 }
 
-.logout {
+.profile-box .setting li {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.profile-box .setting .link .fa {
+    color: midnightblue;
+}
+
+.profile-box li:last-child a {
     padding: 1px 6px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #c9c9c9;
-    display: -webkit-flex;
-    display: flex;
+    display: inline-block;
+    text-align: center;
     background-color: #ff99bb;
     color: white;
-    width: 7rem;
     text-decoration: none;
 }
 

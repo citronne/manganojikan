@@ -36,8 +36,30 @@ class UserService {
         return null;
     }
 
+    public function verifyPassword($user, $password) {
+        $user_name = $user->getUserName();
+        $row = UserDB::selectUser($user_name);
+        if (!empty($row)) {
+            $pass = $row["password"];
+            return password_verify($password, $pass);
+        }
+        return null;
+    }
+
+    public function changePassword($user, $new_password) {
+        UserDB::updatePassword($user, $new_password);
+    }
+    
     public static function assignLibraryForUser($library, $id_user) {
         $id_library = $library->getId();
         UserDB::insertIdLibrary($id_user, $id_library);
+    }
+    
+    public static function deleteAccount($id_user, $id_library) {
+        UserDB::deleteAccount($id_user, $id_library);
+    }
+    
+    public static function deleteUser($id_user) {
+        UserDB::deleteUser($id_user);
     }
 }

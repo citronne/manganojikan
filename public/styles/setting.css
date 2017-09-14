@@ -8,6 +8,10 @@ nav .menu .setting-icon .fa-cog, nav .menu .user-icon .fa {
     font-size: 2rem;
 }
 
+.setting li:first-child {
+    background-color: #ccffcc;
+}
+
 .setting {
     text-align: center;
 }
@@ -16,3 +20,35 @@ nav .menu .setting-icon .fa-cog, nav .menu .user-icon .fa {
     display: none;
 }
 
+.link {
+    text-decoration: none;
+    color: #000;
+}
+
+.link .fa {
+    color: midnightblue;
+}
+
+.setting ul {
+    margin-top: 0;
+    padding-left: 0;
+}
+
+.setting input {
+    width: 15rem;
+}
+
+.setting form button {
+    padding: 1px 6px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border: 1px solid #c9c9c9;
+    display: -webkit-flex;
+    display: flex;
+    background-color: #ff99bb;
+    color: white;
+    width: 8rem;
+    text-decoration: none;
+    display: inline-block;
+}

@@ -1,3 +1,12 @@
 .menu .user-icon .fa-user-plus {
     color: midnightblue;
 }
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.error ul {
+    list-style: none;
+}

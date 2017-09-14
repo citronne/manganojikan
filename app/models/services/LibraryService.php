@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models\services;
+use app\models\services\db\BaseDB;
 use app\models\services\db\VolumeDB;
 
 /**
@@ -11,10 +12,14 @@ use app\models\services\db\VolumeDB;
  */
 class LibraryService{
     public function loadLibrary($id_user) {
-        return \app\models\services\db\BaseDB::loadDB($id_user);
+        return BaseDB::loadDB($id_user);
     }
     
     public function updatePageNumber($page_number, $volume){
         return VolumeDB::updatePageNumber($page_number, $volume);
+    }
+    
+    public function searchMangaName($id_user, $text) {
+        return BaseDB::searchFor($id_user, $text);
     }
 }

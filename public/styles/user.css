@@ -1,10 +1,12 @@
-.user {
-    padding: 2rem;
+.user{
+    padding-top: 0;
 }
 
 .user p {
     font-weight: bold;
     font-size: 16pt;
+    background-color: #ccffcc;
+    padding: 1.2rem;
 }
 
 .user .input-box {
@@ -26,3 +28,4 @@
     display: table;
     margin: 0 auto;
 }
+

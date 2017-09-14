@@ -54,4 +54,34 @@ class UserDB {
         mysqli_close($link);
         return $row;
     }
+
+    public static function updatePassword($user, $password) {
+        $link = BaseDB::connect();
+        $id_user = $user->getId();
+        $password = mysqli_real_escape_string($link, $password);
+        $pass = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE user SET password = '$pass' WHERE id = $id_user";
+        $res = mysqli_query($link, $sql) or die("error3". mysqli_error($link));
+        mysqli_close($link);
+    }
+
+    public static function deleteAccount($id_user, $id_library) {
+        $link = BaseDB::connect();
+        $sql = "DELETE FROM user WHERE id = $id_user";
+        $res = mysqli_query($link, $sql) or die(mysqli_error($link));
+        $sql = "DELETE volume FROM volume INNER JOIN manga ON manga.id = volume.id_manga WHERE manga.id_library = $id_library";
+        $res = mysqli_query($link, $sql) or die(mysqli_error($link));
+        $sql = "DELETE FROM manga WHERE id_library = $id_library";
+        $res = mysqli_query($link, $sql) or die(mysqli_error($link));
+        $sql = "DELETE FROM library WHERE id = $id_library";
+        $res = mysqli_query($link, $sql) or die(mysqli_error($link));
+        mysqli_close($link);
+    }
+
+    public static function deleteUser($id_user) {
+        $link = BaseDB::connect();
+        $sql = "DELETE FROM user WHERE id = $id_user";
+        $res = mysqli_query($link, $sql) or die(mysqli_error($link));
+        mysqli_close($link);
+    }
 }
